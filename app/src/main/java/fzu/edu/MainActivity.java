@@ -1,0 +1,117 @@
+package fzu.edu;
+
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
+
+public class MainActivity extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener {
+
+    private CourseFragment courseFragment;
+    private InfoFragment infoFragment;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setCheckedItem(R.id.nav_course);               //侧边栏默认选项
+        navigationView.setNavigationItemSelectedListener(this);
+
+        View headView =navigationView.getHeaderView(0);
+        TextView userNameView=headView.findViewById(R.id.nav_header_name);
+        userNameView.setText("曾锦容");
+        TextView userIdView=headView.findViewById(R.id.nav_header_id);
+        userIdView.setText("111500507");
+
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        courseFragment = new CourseFragment();
+        transaction.add(R.id.main_fragment, courseFragment).commit();
+    }
+
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        //TODO:右上角菜单点击事件
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @SuppressWarnings("StatementWithEmptyBody")
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        FragmentManager manager = getFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        hideFragment(transaction);
+        //TODO：侧边栏点击事件
+        switch (item.getItemId()) {
+            case R.id.nav_course:
+                if (courseFragment == null) {
+                    courseFragment = new CourseFragment();
+                    transaction.add(R.id.main_fragment, courseFragment).commit();
+                } else {
+                    transaction.show(courseFragment).commit();
+                }
+                break;
+            case R.id.nav_info:
+                if (infoFragment == null) {
+                    infoFragment = new InfoFragment();
+                    transaction.add(R.id.main_fragment, infoFragment).commit();
+                } else {
+                    transaction.show(courseFragment).commit();
+                }
+        }
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
+
+    public void hideFragment(FragmentTransaction transaction){
+        //TODO：隐藏fragment
+        if(courseFragment!=null){
+            transaction.hide(courseFragment);
+        }
+    }
+}
