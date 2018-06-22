@@ -1,6 +1,5 @@
 package fzu.edu.adapter;
 
-import android.content.Context;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,15 +7,15 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import fzu.edu.R;
+
+import static fzu.edu.MyApplication.getContext;
+
 
 /**
  * 课程表适配器
  */
 public class SyllabusAdapter extends BaseAdapter {
-
-    private Context mContext;
 
     private String[][] contents;
 
@@ -25,10 +24,6 @@ public class SyllabusAdapter extends BaseAdapter {
     private int columnTotal;
 
     private int positionTotal;
-
-    public SyllabusAdapter(Context context) {
-        this.mContext = context;
-    }
 
     /**
      * 要绑定的条目的数目,即格子的数量
@@ -64,9 +59,9 @@ public class SyllabusAdapter extends BaseAdapter {
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
-            convertView = LayoutInflater.from(mContext).inflate(R.layout.course_item, null);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_syllabus, null);
         }
-        TextView textView = convertView.findViewById(R.id.text);
+        TextView textView = convertView.findViewById(R.id.item_syllabus_text);
 
         //如果有课,那么添加数据
         if (getItem(position)!=null) {
@@ -80,7 +75,7 @@ public class SyllabusAdapter extends BaseAdapter {
                     int row = position / columnTotal;
                     int column = position % columnTotal;
                     String msg = "当前选中的是" + contents[row][column] + "课";
-                    Toast.makeText(mContext, msg, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
                 }
             });
         }

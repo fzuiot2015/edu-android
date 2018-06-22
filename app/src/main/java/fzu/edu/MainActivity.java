@@ -15,9 +15,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import fzu.edu.fragment.CourseFragment;
+import fzu.edu.fragment.SyllabusFragment;
+import fzu.edu.fragment.InfoFragment;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    private SyllabusFragment syllabusFragment;
     private CourseFragment courseFragment;
     private InfoFragment infoFragment;
 
@@ -36,7 +41,7 @@ public class MainActivity extends AppCompatActivity
         toggle.syncState();
 
         NavigationView navigationView = findViewById(R.id.nav_view);
-        navigationView.setCheckedItem(R.id.nav_course);               //侧边栏默认选项
+        navigationView.setCheckedItem(R.id.nav_syllabus);               //侧边栏默认选项
         navigationView.setNavigationItemSelectedListener(this);
 
         View headView =navigationView.getHeaderView(0);
@@ -46,8 +51,8 @@ public class MainActivity extends AppCompatActivity
         userIdView.setText("111500507");
 
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        courseFragment = new CourseFragment();
-        transaction.add(R.id.main_fragment, courseFragment).commit();
+        syllabusFragment = new SyllabusFragment();
+        transaction.add(R.id.main_fragment, syllabusFragment).commit();
     }
 
     @Override
@@ -86,6 +91,15 @@ public class MainActivity extends AppCompatActivity
         hideFragment(transaction);
         //TODO：侧边栏点击事件
         switch (item.getItemId()) {
+            case R.id.nav_syllabus:
+                if (syllabusFragment == null) {
+                    syllabusFragment = new SyllabusFragment();
+                    transaction.add(R.id.main_fragment, syllabusFragment).commit();
+                } else {
+                    transaction.show(syllabusFragment).commit();
+                }
+                break;
+
             case R.id.nav_course:
                 if (courseFragment == null) {
                     courseFragment = new CourseFragment();
@@ -94,24 +108,32 @@ public class MainActivity extends AppCompatActivity
                     transaction.show(courseFragment).commit();
                 }
                 break;
+
             case R.id.nav_info:
                 if (infoFragment == null) {
                     infoFragment = new InfoFragment();
                     transaction.add(R.id.main_fragment, infoFragment).commit();
                 } else {
-                    transaction.show(courseFragment).commit();
+                    transaction.show(infoFragment).commit();
                 }
+                break;
+
         }
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
-
     public void hideFragment(FragmentTransaction transaction){
         //TODO：隐藏fragment
+        if(syllabusFragment !=null){
+            transaction.hide(syllabusFragment);
+        }
         if(courseFragment!=null){
             transaction.hide(courseFragment);
+        }
+        if(infoFragment!=null){
+            transaction.hide(infoFragment);
         }
     }
 }
