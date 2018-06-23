@@ -42,12 +42,12 @@ public class SyllabusFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_syllabus, container, false);
 
-        getRequest();
-
         GridView syllabusView = view.findViewById(R.id.syllabus);
         syllabusAdapter = new SyllabusAdapter();
         syllabusAdapter.setContent(contents, 6, 7);
         syllabusView.setAdapter(syllabusAdapter);
+
+        setCourseData();
 
         return view;
     }

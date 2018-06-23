@@ -16,7 +16,6 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-import fzu.edu.Course;
 import fzu.edu.MyApplication;
 import fzu.edu.R;
 import fzu.edu.adapter.StuListAdapter;
@@ -45,15 +44,19 @@ public class StuListFragment extends Fragment {
         ListView listView = view.findViewById(R.id.list_stu);
         stuListAdapter = new StuListAdapter(getActivity(), R.layout.item_stulist, students);
         listView.setAdapter(stuListAdapter);
+        getRequest();
         return view;
     }
 
     /**
-     * 从服务器获取数据
+     * 从服务器获取数据,通过课程号 cid 查询对应的学生列表
      */
     private void getRequest() {
+
+        String cid = "2c8eb2ec8d6c4c06959a9570d794de35";
+
         final Request request = new Request.Builder()
-                .url("http://2119574u5y.iask.in:10678/Amadeus/StudentServlet?method=findAllStudentByCid2&cid=2c8eb2ec8d6c4c06959a9570d794de35&phone=1").build();
+                .url(MyApplication.getAPI() + "/StudentServlet?method=findAllStudentByCid&cid=" + cid + "&phone=1").build();
 
         OkHttpClient client = new OkHttpClient();
         Call call = client.newCall(request);
