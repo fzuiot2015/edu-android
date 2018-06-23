@@ -19,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import fzu.edu.fragment.CourseFragment;
+import fzu.edu.fragment.StuListFragment;
 import fzu.edu.fragment.SyllabusFragment;
 import fzu.edu.fragment.InfoFragment;
 
@@ -30,6 +31,7 @@ public class MainActivity extends AppCompatActivity
     private SyllabusFragment syllabusFragment;
     private CourseFragment courseFragment;
     private InfoFragment infoFragment;
+    private StuListFragment stuListFragment;// TODO: 2018/6/23 转移到教师用户界面
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -141,6 +143,15 @@ public class MainActivity extends AppCompatActivity
                 }
                 break;
 
+            // TODO: 2018/6/23 转移到教师用户界面
+            case R.id.nav_stu:
+                if (stuListFragment == null) {
+                    stuListFragment = new StuListFragment();
+                    transaction.add(R.id.main_fragment, stuListFragment).commit();
+                } else {
+                    transaction.show(stuListFragment).commit();
+                }
+                break;
         }
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -157,6 +168,11 @@ public class MainActivity extends AppCompatActivity
         }
         if(infoFragment!=null){
             transaction.hide(infoFragment);
+        }
+
+        // TODO: 2018/6/23 转移到教师用户界面
+        if(stuListFragment!=null){
+            transaction.hide(stuListFragment);
         }
     }
 }
