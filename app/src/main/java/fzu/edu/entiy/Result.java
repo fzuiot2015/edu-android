@@ -1,4 +1,4 @@
-package fzu.edu;
+package fzu.edu.entiy;
 
 /**
  * 反馈结果类，用于服务器端与安卓端的消息通信

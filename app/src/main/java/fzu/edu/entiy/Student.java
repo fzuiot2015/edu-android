@@ -1,4 +1,4 @@
-package fzu.edu.util;
+package fzu.edu.entiy;
 
 public class Student 
 {

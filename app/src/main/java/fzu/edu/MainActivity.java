@@ -1,7 +1,9 @@
 package fzu.edu;
 
+import android.app.AlertDialog;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -14,10 +16,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import fzu.edu.fragment.CourseFragment;
 import fzu.edu.fragment.SyllabusFragment;
 import fzu.edu.fragment.InfoFragment;
+
+import static fzu.edu.MyApplication.getContext;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -61,7 +66,25 @@ public class MainActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            AlertDialog.Builder builder=new AlertDialog.Builder(getContext());
+            builder.setPositiveButton("退出", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    dialogInterface.dismiss();
+                    finish();
+                }
+            });
+
+            builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    dialogInterface.dismiss();
+                }
+            });
+
+            builder.setMessage("确认退出？");
+            builder.setTitle("退出");
+            builder.show();
         }
     }
 

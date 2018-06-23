@@ -10,8 +10,7 @@ import android.widget.ArrayAdapter;
 
 import java.util.List;
 
-import fzu.edu.Course;
-import fzu.edu.util.Student;
+import fzu.edu.entiy.Student;
 
 public class StuListAdapter extends ArrayAdapter<Student> {
 

@@ -20,7 +20,7 @@ import java.util.List;
 import fzu.edu.Course;
 import fzu.edu.MyApplication;
 import fzu.edu.R;
-import fzu.edu.Result;
+import fzu.edu.entiy.Result;
 import fzu.edu.adapter.SyllabusAdapter;
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -29,11 +29,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 public class SyllabusFragment extends Fragment {
-
-
-
     private String[][] contents = new String[6][7];
-
     private SyllabusAdapter syllabusAdapter;
 
     @Override

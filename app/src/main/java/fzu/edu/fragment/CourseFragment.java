@@ -19,7 +19,7 @@ import java.util.List;
 import fzu.edu.Course;
 import fzu.edu.MyApplication;
 import fzu.edu.R;
-import fzu.edu.Result;
+import fzu.edu.entiy.Result;
 import fzu.edu.adapter.CourseAdapter;
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -28,9 +28,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 public class CourseFragment extends Fragment {
-
     private List<Course> courses = new ArrayList<>();
-
     private CourseAdapter courseAdapter;
 
     @Override
@@ -44,19 +42,34 @@ public class CourseFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_course, container, false);
 
         ListView listView = view.findViewById(R.id.course_list);
-        courseAdapter = new CourseAdapter(MyApplication.getContext(), R.layout.item_course, courses);
+        courseAdapter = new CourseAdapter(getActivity(), R.layout.item_course, courses);
         listView.setAdapter(courseAdapter);
-        getRequest();
+//        getRequest();
+        initData();
         return view;
     }
 
-    private void initData(){
-        Course course=new Course();
-        course.setName("test1");
-        courses.add(course);
-        Course course1=new Course();
-        course1.setName("test2");
-        courses.add(course1);
+    /**
+     * 测试数据
+     */
+    private void initData() {
+        courses.add(new Course("Java", "东三999", "林一"));
+        courses.add(new Course("Java", "东三999", "林一"));
+        courses.add(new Course("Java", "东三999", "林一"));
+        courses.add(new Course("Java", "东三999", "林一"));
+        courses.add(new Course("Java", "东三999", "林一"));
+        courses.add(new Course("Java", "东三999", "林一"));
+        courses.add(new Course("Java", "东三999", "林一"));
+        courses.add(new Course("Java", "东三999", "林一"));
+        courses.add(new Course("Java", "东三999", "林一"));
+        courses.add(new Course("Java", "东三999", "林一"));
+        courses.add(new Course("Java", "东三999", "林一"));
+        courses.add(new Course("Java", "东三999", "林一"));
+        courses.add(new Course("Java", "东三999", "林一"));
+        courses.add(new Course("Java", "东三999", "林一"));
+        courses.add(new Course("Java", "东三999", "林一"));
+        courses.add(new Course("Java", "东三999", "林一"));
+
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -66,6 +79,9 @@ public class CourseFragment extends Fragment {
         });
     }
 
+    /**
+     * 从服务器获取数据
+     */
     private void getRequest() {
         final Request request = new Request.Builder()
                 .url(MyApplication.getAPI() + "/courseAll").build();

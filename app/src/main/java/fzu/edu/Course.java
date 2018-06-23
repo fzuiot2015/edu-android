@@ -11,6 +11,12 @@ public class Course {
     private String weekday;     //上课日期（星期X）
     private String section;     //上课时间（第X节课）
 
+    public Course(String name,String address,String teacher) {
+    this.setName(name);
+    this.setAddress(address);
+    this.setTeacher(teacher);
+    }
+
     public String getId() {
         return id;
     }

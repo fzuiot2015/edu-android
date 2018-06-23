@@ -18,7 +18,7 @@ import java.util.List;
 import fzu.edu.Course;
 import fzu.edu.MyApplication;
 import fzu.edu.R;
-import fzu.edu.Result;
+import fzu.edu.entiy.Result;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
@@ -38,7 +38,6 @@ public class InfoFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_info, container, false);
         return view;
     }
-
 
 
     private void getRequest() {
