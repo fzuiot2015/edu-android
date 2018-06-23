@@ -18,11 +18,11 @@ import java.util.List;
 import fzu.edu.Course;
 import fzu.edu.R;
 
-public class CourseAdapter extends ArrayAdapter<Course> {
+public class CourseListAdapter extends ArrayAdapter<Course> {
 
     private int resourceId;
 
-    public CourseAdapter(@NonNull Context context, int resource, List<Course> courses) {
+    public CourseListAdapter(@NonNull Context context, int resource, List<Course> courses) {
         super(context, resource, courses);
         resourceId = resource;
     }

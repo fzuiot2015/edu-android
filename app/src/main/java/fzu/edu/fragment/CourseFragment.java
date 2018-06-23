@@ -20,7 +20,7 @@ import fzu.edu.Course;
 import fzu.edu.MyApplication;
 import fzu.edu.R;
 import fzu.edu.entiy.Result;
-import fzu.edu.adapter.CourseAdapter;
+import fzu.edu.adapter.CourseListAdapter;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
@@ -29,7 +29,7 @@ import okhttp3.Response;
 
 public class CourseFragment extends Fragment {
     private List<Course> courses = new ArrayList<>();
-    private CourseAdapter courseAdapter;
+    private CourseListAdapter courseListAdapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -39,11 +39,11 @@ public class CourseFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_course, container, false);
+        View view = inflater.inflate(R.layout.fragment_course_list, container, false);
 
         ListView listView = view.findViewById(R.id.course_list);
-        courseAdapter = new CourseAdapter(getActivity(), R.layout.item_course, courses);
-        listView.setAdapter(courseAdapter);
+        courseListAdapter = new CourseListAdapter(getActivity(), R.layout.item_course, courses);
+        listView.setAdapter(courseListAdapter);
 //        getRequest();
         initData();
         return view;
@@ -74,7 +74,7 @@ public class CourseFragment extends Fragment {
             @Override
             public void run() {
                 Toast.makeText(getActivity(), "课表列表加载测试", Toast.LENGTH_SHORT).show();
-                courseAdapter.notifyDataSetChanged();
+                courseListAdapter.notifyDataSetChanged();
             }
         });
     }
@@ -113,7 +113,7 @@ public class CourseFragment extends Fragment {
                     @Override
                     public void run() {
                         Toast.makeText(getActivity(), "课表列表加载成功", Toast.LENGTH_SHORT).show();
-                        courseAdapter.notifyDataSetChanged();
+                        courseListAdapter.notifyDataSetChanged();
                     }
                 });
             }
