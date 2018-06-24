@@ -8,17 +8,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
 import java.io.IOException;
-import java.lang.reflect.Type;
-import java.util.List;
 
-import fzu.edu.Course;
 import fzu.edu.MyApplication;
 import fzu.edu.R;
-import fzu.edu.entiy.Result;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
@@ -60,12 +53,7 @@ public class InfoFragment extends Fragment {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                final String jsonRes = response.body().string();
-                Gson gson = new Gson();
-                Type type = new TypeToken<Result<List<Course>>>() {
-                }.getType();
-                Result<List<Course>> result = gson.fromJson(jsonRes, type);
-                List<Course> courses = result.getData();
+
             }
         });
     }
