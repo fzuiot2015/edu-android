@@ -3,6 +3,8 @@ package fzu.edu;
 import android.app.Application;
 import android.content.Context;
 
+import fzu.edu.entiy.Student;
+
 public class MyApplication extends Application {
 
     private static final String TEST1="http://2119574u5y.iask.in:10678/Amadeus";
@@ -10,6 +12,8 @@ public class MyApplication extends Application {
 
     private static String API = TEST2;
     private static Context context;
+    private static Student student;
+
 
     @Override
     public void onCreate() {
@@ -27,5 +31,13 @@ public class MyApplication extends Application {
 
     public static Context getContext() {
         return context;
+    }
+
+    public static Student getStudent() {
+        return student;
+    }
+
+    public static void setStudent(Student student) {
+        MyApplication.student = student;
     }
 }
