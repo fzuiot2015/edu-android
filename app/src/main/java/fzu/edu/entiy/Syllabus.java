@@ -33,6 +33,7 @@ public class Syllabus {
         this.student = student;
     }
 
+
     @Override
     public String toString() {
         return "Syllabus [yid=" + yid + ", student=" + student + "]";

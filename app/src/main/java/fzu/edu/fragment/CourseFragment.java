@@ -16,9 +16,9 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-import fzu.edu.Course;
 import fzu.edu.MyApplication;
 import fzu.edu.R;
+import fzu.edu.entiy.Course;
 import fzu.edu.entiy.Result;
 import fzu.edu.adapter.CourseListAdapter;
 import okhttp3.Call;
@@ -44,8 +44,7 @@ public class CourseFragment extends Fragment {
         ListView listView = view.findViewById(R.id.course_list);
         courseListAdapter = new CourseListAdapter(getActivity(), R.layout.item_course, courses);
         listView.setAdapter(courseListAdapter);
-//        getRequest();
-        initData();
+        getRequest();
         return view;
     }
 
@@ -53,22 +52,6 @@ public class CourseFragment extends Fragment {
      * 测试数据
      */
     private void initData() {
-        courses.add(new Course("Java", "东三999", "林一"));
-        courses.add(new Course("Java", "东三999", "林一"));
-        courses.add(new Course("Java", "东三999", "林一"));
-        courses.add(new Course("Java", "东三999", "林一"));
-        courses.add(new Course("Java", "东三999", "林一"));
-        courses.add(new Course("Java", "东三999", "林一"));
-        courses.add(new Course("Java", "东三999", "林一"));
-        courses.add(new Course("Java", "东三999", "林一"));
-        courses.add(new Course("Java", "东三999", "林一"));
-        courses.add(new Course("Java", "东三999", "林一"));
-        courses.add(new Course("Java", "东三999", "林一"));
-        courses.add(new Course("Java", "东三999", "林一"));
-        courses.add(new Course("Java", "东三999", "林一"));
-        courses.add(new Course("Java", "东三999", "林一"));
-        courses.add(new Course("Java", "东三999", "林一"));
-        courses.add(new Course("Java", "东三999", "林一"));
 
         getActivity().runOnUiThread(new Runnable() {
             @Override
@@ -79,12 +62,13 @@ public class CourseFragment extends Fragment {
         });
     }
 
+    // TODO: 2018/6/23 调整接口
     /**
      * 从服务器获取数据
      */
     private void getRequest() {
         final Request request = new Request.Builder()
-                .url(MyApplication.getAPI() + "/courseAll").build();
+                .url(MyApplication.getAPI() + "/CourseServlet?method=findAll&phone=1").build();
 
         OkHttpClient client = new OkHttpClient();
         Call call = client.newCall(request);

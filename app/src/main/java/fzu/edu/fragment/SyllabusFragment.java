@@ -17,11 +17,14 @@ import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.List;
 
-import fzu.edu.Course;
+
 import fzu.edu.MyApplication;
 import fzu.edu.R;
+import fzu.edu.entiy.Course;
 import fzu.edu.entiy.Result;
 import fzu.edu.adapter.SyllabusAdapter;
+import fzu.edu.entiy.Syllabus;
+import fzu.edu.entiy.SyllabusItem;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
@@ -46,9 +49,7 @@ public class SyllabusFragment extends Fragment {
         syllabusAdapter = new SyllabusAdapter();
         syllabusAdapter.setContent(contents, 6, 7);
         syllabusView.setAdapter(syllabusAdapter);
-
-        setCourseData();
-
+        getRequest();
         return view;
     }
 
@@ -77,9 +78,13 @@ public class SyllabusFragment extends Fragment {
         contents[5][6] = "微机原理及应用\nE203";
     }
 
+    // TODO: 2018/6/23 调整接口
     private void getRequest() {
+
+        String sid = "e20024c8cc1741e582c330c5139aa266";
+
         final Request request = new Request.Builder()
-                .url(MyApplication.getAPI() + "/courseAll").build();
+                .url(MyApplication.getAPI() + "/SyllabusServlet?method=findBySid&sid=" + sid + "&phone=1").build();
 
         OkHttpClient client = new OkHttpClient();
         Call call = client.newCall(request);
@@ -98,20 +103,27 @@ public class SyllabusFragment extends Fragment {
             public void onResponse(Call call, Response response) throws IOException {
                 final String jsonRes = response.body().string();
                 Gson gson = new Gson();
-                Type type = new TypeToken<Result<List<Course>>>() {
+                Type type = new TypeToken<Result<Syllabus>>() {
                 }.getType();
-                Result<List<Course>> result = gson.fromJson(jsonRes, type);
-                List<Course> courses = result.getData();
-                setCourseData(courses);
+                Result<Syllabus> result = gson.fromJson(jsonRes, type);
+                Syllabus syllabus = result.getData();
+                setCourseData(syllabus.getSyllabusItems());
             }
         });
     }
 
-    private void setCourseData(List<Course> list) {
-        for (Course course : list) {
-            int row = Integer.valueOf(course.getWeekday());
-            int col = Integer.valueOf(course.getSection());
-            contents[row][col] = course.getName() + "\n" + course.getAddress();
+    private void setCourseData(List<SyllabusItem> list) {
+        for (SyllabusItem syllabusItem : list) {
+            Course course = syllabusItem.getCourse();
+            int courseTime1 = course.getTime1();
+            int row = courseTime1 % 10 - 1;
+            int col = courseTime1 / 10 - 1;
+            contents[row][col] = course.getCname() + "\n" + course.getAddress();
+
+            int courseTime2 = course.getTime2();
+            row = courseTime2 % 10 - 1;
+            col = courseTime2 / 10 - 1;
+            contents[row][col] = course.getCname() + "\n" + course.getAddress();
         }
         getActivity().runOnUiThread(new Runnable() {
             @Override

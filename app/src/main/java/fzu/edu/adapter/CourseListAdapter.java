@@ -15,8 +15,8 @@ import android.widget.Toast;
 
 import java.util.List;
 
-import fzu.edu.Course;
 import fzu.edu.R;
+import fzu.edu.entiy.Course;
 
 public class CourseListAdapter extends ArrayAdapter<Course> {
 
@@ -39,10 +39,10 @@ public class CourseListAdapter extends ArrayAdapter<Course> {
         }
         TextView textView = view.findViewById(R.id.item_course_name);
 
-        textView.setText(course.getName());
+        textView.setText(course.getCname());
 
         TextView textView1=view.findViewById(R.id.item_course_teacher);
-        textView1.setText(course.getTeacher());
+        textView1.setText(course.getTeacher().getTname());
 
         RelativeLayout layout=view.findViewById(R.id.item_course);
         layout.setOnClickListener(new View.OnClickListener() {
@@ -64,7 +64,7 @@ public class CourseListAdapter extends ArrayAdapter<Course> {
                     }
                 });
 
-                builder.setMessage("确认选"+course.getName()+"课？");
+                builder.setMessage("确认选"+course.getCname()+"课？");
                 builder.setTitle("选课");
                 builder.show();
             }
