@@ -16,12 +16,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import fzu.edu.entiy.Student;
 import fzu.edu.fragment.CourseFragment;
+import fzu.edu.fragment.InfoFragment;
 import fzu.edu.fragment.StuListFragment;
 import fzu.edu.fragment.SyllabusFragment;
-import fzu.edu.fragment.InfoFragment;
 
 import static fzu.edu.MyApplication.getContext;
 
@@ -51,11 +51,13 @@ public class MainActivity extends AppCompatActivity
         navigationView.setCheckedItem(R.id.nav_syllabus);               //侧边栏默认选项
         navigationView.setNavigationItemSelectedListener(this);
 
+        Student student=MyApplication.getStudent();
+
         View headView =navigationView.getHeaderView(0);
         TextView userNameView=headView.findViewById(R.id.nav_header_name);
-        userNameView.setText("曾锦容");
+        userNameView.setText(student.getSname());
         TextView userIdView=headView.findViewById(R.id.nav_header_id);
-        userIdView.setText("111500507");
+        userIdView.setText(student.getSusername());
 
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         syllabusFragment = new SyllabusFragment();

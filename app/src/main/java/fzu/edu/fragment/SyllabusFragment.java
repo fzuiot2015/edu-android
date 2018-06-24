@@ -81,7 +81,7 @@ public class SyllabusFragment extends Fragment {
     // TODO: 2018/6/23 调整接口
     private void getRequest() {
 
-        String sid = "e20024c8cc1741e582c330c5139aa266";
+        String sid = MyApplication.getStudent().getSid();
 
         final Request request = new Request.Builder()
                 .url(MyApplication.getAPI() + "/SyllabusServlet?method=findBySid&sid=" + sid + "&phone=1").build();
