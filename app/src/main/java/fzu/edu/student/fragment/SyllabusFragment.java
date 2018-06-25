@@ -35,7 +35,7 @@ import okhttp3.Response;
  * 课表查询子界面
  */
 public class SyllabusFragment extends Fragment {
-    private String[][] contents = new String[6][7];
+    private Course[][] contents = new Course[8][7];
     private SyllabusAdapter syllabusAdapter;
 
     @Override
@@ -50,7 +50,7 @@ public class SyllabusFragment extends Fragment {
 
         GridView syllabusView = view.findViewById(R.id.syllabus);
         syllabusAdapter = new SyllabusAdapter();
-        syllabusAdapter.setContent(contents, 6, 7);
+        syllabusAdapter.setContent(contents, 8, 7);
         syllabusView.setAdapter(syllabusAdapter);
         getRequest();
         return view;
@@ -95,12 +95,12 @@ public class SyllabusFragment extends Fragment {
             int courseTime1 = course.getTime1();
             int row = courseTime1 / 10 - 1;
             int col = courseTime1 % 10 - 1;
-            contents[row][col] = course.getCname() + "\n" + course.getAddress();
+            contents[row][col] = course;
 
             int courseTime2 = course.getTime2();
             row = courseTime2 / 10 - 1;
             col = courseTime2 % 10 - 1;
-            contents[row][col] = course.getCname() + "\n" + course.getAddress();
+            contents[row][col] = course;
         }
         getActivity().runOnUiThread(new Runnable() {
             @Override

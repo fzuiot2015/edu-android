@@ -9,6 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import fzu.edu.R;
+import fzu.edu.entiy.Course;
 
 import static fzu.edu.MyApplication.getContext;
 
@@ -17,7 +18,7 @@ import static fzu.edu.MyApplication.getContext;
  */
 public class SyllabusAdapter extends BaseAdapter {
 
-    private String[][] contents;
+    private Course[][] contents;
 
     private int rowTotal;
 
@@ -45,7 +46,7 @@ public class SyllabusAdapter extends BaseAdapter {
      * 根据一个索引（位置）获得该位置的对象
      */
     @Override
-    public Object getItem(int position) {
+    public Course getItem(int position) {
         //求余得到二维索引
         int column = position % columnTotal;
         //求商得到二维索引
@@ -64,9 +65,10 @@ public class SyllabusAdapter extends BaseAdapter {
         TextView textView = convertView.findViewById(R.id.item_syllabus_text);
 
         //如果有课,那么添加数据
-        if (getItem(position) != null) {
-            textView.setText((String) getItem(position));
-            textView.setTextColor(Color.WHITE);
+        Course course=getItem(position);
+        if ( course!= null) {
+            textView.setText(course.getCname());
+//            textView.setTextColor(Color.WHITE);
             textView.setBackgroundResource(R.color.courseItem);
 
             convertView.setOnClickListener(new View.OnClickListener() {
@@ -74,7 +76,7 @@ public class SyllabusAdapter extends BaseAdapter {
                 public void onClick(View v) {
                     int row = position / columnTotal;
                     int column = position % columnTotal;
-                    String msg = "当前选中的是" + contents[row][column] + "课";
+                    String msg = "当前选中的是" + contents[row][column].getCname() + "课";
                     Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
                 }
             });
@@ -85,7 +87,7 @@ public class SyllabusAdapter extends BaseAdapter {
     /**
      * 设置内容、行数、列数
      */
-    public void setContent(String[][] contents, int row, int column) {
+    public void setContent(Course[][] contents, int row, int column) {
         this.contents = contents;
         this.rowTotal = row;
         this.columnTotal = column;
