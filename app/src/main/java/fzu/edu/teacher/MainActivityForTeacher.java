@@ -19,9 +19,8 @@ import android.widget.TextView;
 
 import fzu.edu.MyApplication;
 import fzu.edu.R;
-import fzu.edu.entiy.Student;
 import fzu.edu.entiy.Teacher;
-import fzu.edu.teacher.adapter.StuListFragment;
+import fzu.edu.teacher.fragment.StuListFragment;
 
 import static fzu.edu.MyApplication.getContext;
 
@@ -48,12 +47,12 @@ public class MainActivityForTeacher extends AppCompatActivity
         navigationView.setCheckedItem(R.id.nav_stu);               //侧边栏默认选项
         navigationView.setNavigationItemSelectedListener(this);
 
-        Teacher teacher= MyApplication.getTeacher();
+        Teacher teacher = MyApplication.getTeacher();
 
-        View headView =navigationView.getHeaderView(0);
-        TextView userNameView=headView.findViewById(R.id.nav_header_name);
+        View headView = navigationView.getHeaderView(0);
+        TextView userNameView = headView.findViewById(R.id.nav_header_name_teacher);
         userNameView.setText(teacher.getTname());
-        TextView userIdView=headView.findViewById(R.id.nav_header_id);
+        TextView userIdView = headView.findViewById(R.id.nav_header_id_teacher);
         userIdView.setText(teacher.getTid());
 
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
@@ -67,7 +66,7 @@ public class MainActivityForTeacher extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            AlertDialog.Builder builder=new AlertDialog.Builder(getContext());
+            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
             builder.setPositiveButton("退出", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
@@ -91,7 +90,7 @@ public class MainActivityForTeacher extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
+        //右上角菜单
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
@@ -119,9 +118,9 @@ public class MainActivityForTeacher extends AppCompatActivity
             case R.id.nav_stu:
                 if (stuListFragment == null) {
                     stuListFragment = new StuListFragment();
-                    transaction.replace(R.id.main_fragment_for_student,stuListFragment).commit();
+                    transaction.replace(R.id.main_fragment_for_student, stuListFragment).commit();
                 } else {
-                    transaction.replace(R.id.main_fragment_for_student,stuListFragment).commit();
+                    transaction.replace(R.id.main_fragment_for_student, stuListFragment).commit();
                 }
                 break;
         }

@@ -54,9 +54,9 @@ public class MainActivityForStudent extends AppCompatActivity
         Student student = MyApplication.getStudent();
 
         View headView = navigationView.getHeaderView(0);
-        TextView userNameView = headView.findViewById(R.id.nav_header_name);
+        TextView userNameView = headView.findViewById(R.id.nav_header_name_student);
         userNameView.setText(student.getSname());
-        TextView userIdView = headView.findViewById(R.id.nav_header_id);
+        TextView userIdView = headView.findViewById(R.id.nav_header_id_student);
         userIdView.setText(student.getSusername());
 
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
@@ -94,7 +94,7 @@ public class MainActivityForStudent extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
+        //右上角菜单
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }

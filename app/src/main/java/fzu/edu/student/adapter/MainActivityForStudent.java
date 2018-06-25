@@ -22,7 +22,7 @@ import fzu.edu.R;
 import fzu.edu.entiy.Student;
 import fzu.edu.student.fragment.CourseFragment;
 import fzu.edu.student.fragment.InfoFragment;
-import fzu.edu.teacher.adapter.StuListFragment;
+import fzu.edu.teacher.fragment.StuListFragment;
 import fzu.edu.student.fragment.SyllabusFragment;
 
 import static fzu.edu.MyApplication.getContext;
@@ -56,9 +56,9 @@ public class MainActivityForStudent extends AppCompatActivity
         Student student=MyApplication.getStudent();
 
         View headView =navigationView.getHeaderView(0);
-        TextView userNameView=headView.findViewById(R.id.nav_header_name);
+        TextView userNameView=headView.findViewById(R.id.nav_header_name_teacher);
         userNameView.setText(student.getSname());
-        TextView userIdView=headView.findViewById(R.id.nav_header_id);
+        TextView userIdView=headView.findViewById(R.id.nav_header_id_teacher);
         userIdView.setText(student.getSusername());
 
         FragmentTransaction transaction = getFragmentManager().beginTransaction();

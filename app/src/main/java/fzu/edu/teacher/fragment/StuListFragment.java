@@ -1,4 +1,4 @@
-package fzu.edu.teacher.adapter;
+package fzu.edu.teacher.fragment;
 
 import android.app.Fragment;
 import android.os.Bundle;
