@@ -24,8 +24,6 @@ import fzu.edu.activity.LoginActivity;
 import fzu.edu.entiy.Teacher;
 import fzu.edu.teacher.fragment.StuListFragment;
 
-import static fzu.edu.MyApplication.getContext;
-
 /**
  * 教师用户主界面
  */
@@ -132,10 +130,27 @@ public class MainActivityForTeacher extends AppCompatActivity
                 break;
 
             case R.id.nav_logout:
-                Intent intent = new Intent(MainActivityForTeacher.this, LoginActivity.class);
-                MainActivityForTeacher.this.startActivity(intent);
-                MainActivityForTeacher.this.finish();
-                MyApplication.setTeacher(null);
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                        Intent intent = new Intent(MainActivityForTeacher.this, LoginActivity.class);
+                        MainActivityForTeacher.this.startActivity(intent);
+                        MainActivityForTeacher.this.finish();
+                        MyApplication.setTeacher(null);
+                    }
+                });
+
+                builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                });
+                builder.setMessage("确定退出当前账号？");
+                builder.setTitle("注销");
+                builder.show();
                 break;
         }
         return true;

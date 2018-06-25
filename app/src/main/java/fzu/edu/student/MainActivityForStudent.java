@@ -155,10 +155,27 @@ public class MainActivityForStudent extends AppCompatActivity
                 break;
 
             case R.id.nav_logout:
-                Intent intent = new Intent(MainActivityForStudent.this, LoginActivity.class);
-                MainActivityForStudent.this.startActivity(intent);
-                MainActivityForStudent.this.finish();
-                MyApplication.setStudent(null);
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                        Intent intent = new Intent(MainActivityForStudent.this, LoginActivity.class);
+                        MainActivityForStudent.this.startActivity(intent);
+                        MainActivityForStudent.this.finish();
+                        MyApplication.setStudent(null);
+                    }
+                });
+
+                builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                });
+                builder.setMessage("确定退出当前账号？");
+                builder.setTitle("注销");
+                builder.show();
                 break;
         }
         return true;
