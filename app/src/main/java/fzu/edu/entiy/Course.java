@@ -1,5 +1,8 @@
 package fzu.edu.entiy;
 
+/**
+ * 课程类
+ */
 public class Course {
     private String cid;
     private String cname;       //课程名

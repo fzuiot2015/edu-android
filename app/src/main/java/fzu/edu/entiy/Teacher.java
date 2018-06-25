@@ -1,5 +1,8 @@
 package fzu.edu.entiy;
 
+/**
+ * 教师类
+ */
 public class Teacher {
     private String tusername;   //账号
     private String tpassword;   //密码

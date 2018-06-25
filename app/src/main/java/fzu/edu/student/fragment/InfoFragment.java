@@ -18,6 +18,9 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
+/**
+ * 个人信息子界面
+ */
 public class InfoFragment extends Fragment {
 
     @Override

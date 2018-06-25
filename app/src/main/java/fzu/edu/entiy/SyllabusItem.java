@@ -1,5 +1,8 @@
 package fzu.edu.entiy;
 
+/**
+ * 课表子项目类
+ */
 public class SyllabusItem {
     private String iid;
     private Syllabus syllabus;

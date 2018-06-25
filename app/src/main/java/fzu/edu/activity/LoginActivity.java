@@ -219,7 +219,7 @@ public class LoginActivity extends AppCompatActivity {
     private void teacherLogin(String account, String password) {
         final Request request = new Request.Builder()
                 .url(MyApplication.getAPI() + "/TeacherServlet?method=login&tusername="
-                        +account+"&tpassword="+password+"&phone=1").build();
+                        + account + "&tpassword=" + password + "&phone=1").build();
 
         OkHttpClient client = new OkHttpClient();
         Call call = client.newCall(request);

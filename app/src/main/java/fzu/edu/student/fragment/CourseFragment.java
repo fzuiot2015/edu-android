@@ -27,6 +27,9 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
+/**
+ * 选课列表子界面
+ */
 public class CourseFragment extends Fragment {
     private List<Course> courses = new ArrayList<>();
     private CourseListAdapter courseListAdapter;

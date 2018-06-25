@@ -20,12 +20,14 @@ import android.widget.TextView;
 
 import fzu.edu.MyApplication;
 import fzu.edu.R;
-import fzu.edu.activity.LoginActivity;
 import fzu.edu.entiy.Teacher;
 import fzu.edu.teacher.fragment.StuListFragment;
 
 import static fzu.edu.MyApplication.getContext;
 
+/**
+ * 教师用户主界面
+ */
 public class MainActivityForTeacher extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 

@@ -27,6 +27,9 @@
             android:name=".student.MainActivityForStudent"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
+            android:name=".teacher.MainActivityForTeacher"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".activity.LoginActivity"
             android:label="@string/title_activity_login"/>
     </application>

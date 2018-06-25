@@ -17,9 +17,9 @@ public class TestFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view= inflater.inflate(R.layout.fragment_test, container, false);
+        View view = inflater.inflate(R.layout.fragment_test, container, false);
 
-        ListView listView=view.findViewById(R.id.list_test);
+        ListView listView = view.findViewById(R.id.list_test);
 
 
         return view;

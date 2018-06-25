@@ -31,6 +31,9 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
+/**
+ * 课表查询子界面
+ */
 public class SyllabusFragment extends Fragment {
     private String[][] contents = new String[6][7];
     private SyllabusAdapter syllabusAdapter;
@@ -51,31 +54,6 @@ public class SyllabusFragment extends Fragment {
         syllabusView.setAdapter(syllabusAdapter);
         getRequest();
         return view;
-    }
-
-    public void setCourseData() {
-        contents = new String[6][7];
-        contents[0][0] = "现代测试技术\nB211";
-        contents[1][0] = "微机原理及应用\nE203";
-        contents[2][0] = "电磁场理论\nA212";
-        contents[3][0] = "传感器电子测量A\nC309";
-
-        contents[0][1] = "数据结构与算法\nB211";
-        contents[2][1] = "面向对象程序设计\nA309";
-        contents[3][1] = "面向对象程序设计\nA309";
-
-        contents[0][2] = "微机原理及应用\nE203";
-        contents[1][2] = "电磁场理论\nA212";
-        contents[2][2] = "现代测试技术\nB211";
-
-        contents[0][3] = "面向对象程序设计\nA309";
-        contents[1][3] = "传感器电子测量A\nC309";
-
-        contents[0][4] = "数据结构与算法\nB211";
-
-        contents[3][5] = "微机原理及应用\nE203";
-
-        contents[5][6] = "微机原理及应用\nE203";
     }
 
     private void getRequest() {

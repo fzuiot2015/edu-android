@@ -27,6 +27,9 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
+/**
+ * 学生列表子界面
+ */
 public class StuListFragment extends Fragment {
     private StuListAdapter stuListAdapter;
     private List<Student> students = new ArrayList<>();

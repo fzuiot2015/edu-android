@@ -28,6 +28,9 @@ import fzu.edu.teacher.MainActivityForTeacher;
 
 import static fzu.edu.MyApplication.getContext;
 
+/**
+ * 学生用户主界面
+ */
 public class MainActivityForStudent extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -147,7 +150,6 @@ public class MainActivityForStudent extends AppCompatActivity
                     transaction.replace(R.id.main_fragment_for_student, infoFragment).commit();
                 }
                 break;
-
 
             case R.id.nav_logout:
                 Intent intent = new Intent(MainActivityForStudent.this, MainActivityForTeacher.class);

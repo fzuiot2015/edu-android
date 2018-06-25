@@ -31,6 +31,9 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
+/**
+ * 选课列表适配器
+ */
 public class CourseListAdapter extends ArrayAdapter<Course> {
 
     private int resourceId;
@@ -93,7 +96,7 @@ public class CourseListAdapter extends ArrayAdapter<Course> {
 
         final Request request = new Request.Builder()
                 .url(MyApplication.getAPI() + "/SyllabusServlet?method=select&cid="
-                        +cid+"&sid="+sid+"&phone=1").build();
+                        + cid + "&sid=" + sid + "&phone=1").build();
 
         OkHttpClient client = new OkHttpClient();
         Call call = client.newCall(request);

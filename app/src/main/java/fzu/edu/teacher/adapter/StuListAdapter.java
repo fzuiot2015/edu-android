@@ -14,6 +14,9 @@ import java.util.List;
 import fzu.edu.R;
 import fzu.edu.entiy.Student;
 
+/**
+ * 学生列表适配器
+ */
 public class StuListAdapter extends ArrayAdapter<Student> {
 
     private int resourceId;
@@ -34,13 +37,13 @@ public class StuListAdapter extends ArrayAdapter<Student> {
             view = convertView;
         }
 
-        TextView textView=view.findViewById(R.id.item_stu_id);
+        TextView textView = view.findViewById(R.id.item_stu_id);
         textView.setText(student.getSusername());
-        TextView textView1=view.findViewById(R.id.item_stu_major);
+        TextView textView1 = view.findViewById(R.id.item_stu_major);
         textView1.setText(student.getSmajor());
-        TextView textView2=view.findViewById(R.id.item_stu_name);
+        TextView textView2 = view.findViewById(R.id.item_stu_name);
         textView2.setText(student.getSname());
-        TextView textView3=view.findViewById(R.id.item_stu_academy);
+        TextView textView3 = view.findViewById(R.id.item_stu_academy);
         textView3.setText(student.getSdept());
 
         return view;

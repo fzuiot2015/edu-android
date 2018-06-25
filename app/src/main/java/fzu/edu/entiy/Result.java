@@ -3,7 +3,7 @@ package fzu.edu.entiy;
 /**
  * 反馈结果类，用于服务器端与安卓端的消息通信
  */
-public class Result<T>{
+public class Result<T> {
     private int code;           //状态码
     private String message;     //状态消息
     private T data;             //数据
