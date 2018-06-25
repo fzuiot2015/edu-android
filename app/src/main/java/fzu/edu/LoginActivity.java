@@ -65,11 +65,20 @@ public class LoginActivity extends AppCompatActivity {
 
         mRadioGroup = findViewById(R.id.radio_group_login);
 
+        Button mRegister = findViewById(R.id.register_button);
         Button mLoginButton = findViewById(R.id.login_button);
         mLoginButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 attemptLogin();
+            }
+        });
+        mRegister.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this,Register.class);
+                LoginActivity.this.startActivity(intent);
+                LoginActivity.this.finish();
             }
         });
 
