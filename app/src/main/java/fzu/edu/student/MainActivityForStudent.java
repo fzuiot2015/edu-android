@@ -72,11 +72,11 @@ public class MainActivityForStudent extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = findViewById(R.id.drawer_layout_teacher);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout_student);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setPositiveButton("退出", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
@@ -122,6 +122,9 @@ public class MainActivityForStudent extends AppCompatActivity
         FragmentManager manager = getFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
 
+        DrawerLayout drawer = findViewById(R.id.drawer_layout_student);
+        drawer.closeDrawer(GravityCompat.START);
+
         //TODO：侧边栏点击事件
         switch (item.getItemId()) {
             case R.id.nav_syllabus:
@@ -158,8 +161,6 @@ public class MainActivityForStudent extends AppCompatActivity
                 MyApplication.setStudent(null);
                 break;
         }
-        DrawerLayout drawer = findViewById(R.id.drawer_layout_student);
-        drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 

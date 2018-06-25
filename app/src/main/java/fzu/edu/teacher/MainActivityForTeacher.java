@@ -71,7 +71,7 @@ public class MainActivityForTeacher extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setPositiveButton("退出", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
@@ -117,6 +117,9 @@ public class MainActivityForTeacher extends AppCompatActivity
         FragmentManager manager = getFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
 
+        DrawerLayout drawer = findViewById(R.id.drawer_layout_teacher);
+        drawer.closeDrawer(GravityCompat.START);
+
         //TODO：侧边栏点击事件
         switch (item.getItemId()) {
             case R.id.nav_stu:
@@ -135,8 +138,6 @@ public class MainActivityForTeacher extends AppCompatActivity
                 MyApplication.setTeacher(null);
                 break;
         }
-        DrawerLayout drawer = findViewById(R.id.drawer_layout_teacher);
-        drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 

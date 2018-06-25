@@ -24,11 +24,13 @@ import java.lang.reflect.Type;
 
 import fzu.edu.MyApplication;
 import fzu.edu.R;
+import fzu.edu.student.StudentRegisterActivity;
 import fzu.edu.entiy.Result;
 import fzu.edu.entiy.Student;
 import fzu.edu.entiy.Teacher;
 import fzu.edu.student.MainActivityForStudent;
 import fzu.edu.teacher.MainActivityForTeacher;
+import fzu.edu.teacher.TeacherRegisterActivity;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
@@ -53,7 +55,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         mAccountView = findViewById(R.id.login_input_account);
-        mPasswordView = findViewById(R.id.register_input_password);
+        mPasswordView = findViewById(R.id.register_input_password_srudent);
 
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -69,7 +71,7 @@ public class LoginActivity extends AppCompatActivity {
 
         mRadioGroup = findViewById(R.id.radio_group_login);
 
-        Button mRegister = findViewById(R.id.register_button);
+        Button mRegister = findViewById(R.id.register_button_student);
         Button mLoginButton = findViewById(R.id.login_button);
         mLoginButton.setOnClickListener(new OnClickListener() {
             @Override
@@ -77,12 +79,24 @@ public class LoginActivity extends AppCompatActivity {
                 attemptLogin();
             }
         });
+
         mRegister.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this,Register.class);
-                LoginActivity.this.startActivity(intent);
-                LoginActivity.this.finish();
+                Intent intent;
+                switch (mRadioGroup.getCheckedRadioButtonId()) {
+                    case R.id.radio_student_login:
+                        intent = new Intent(LoginActivity.this, StudentRegisterActivity.class);
+                        LoginActivity.this.startActivity(intent);
+                        LoginActivity.this.finish();
+                        break;
+                    case R.id.radio_teacher_login:
+                        intent = new Intent(LoginActivity.this, TeacherRegisterActivity.class);
+                        LoginActivity.this.startActivity(intent);
+                        LoginActivity.this.finish();
+                        break;
+                }
+
             }
         });
 
