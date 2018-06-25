@@ -55,7 +55,6 @@ public class LoginActivity extends AppCompatActivity {
         mAccountView = findViewById(R.id.login_input_account);
         mPasswordView = findViewById(R.id.register_input_password);
 
-
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {

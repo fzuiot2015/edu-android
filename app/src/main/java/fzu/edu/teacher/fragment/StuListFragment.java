@@ -18,9 +18,10 @@ import java.util.List;
 
 import fzu.edu.MyApplication;
 import fzu.edu.R;
-import fzu.edu.teacher.adapter.StuListAdapter;
+
 import fzu.edu.entiy.Result;
 import fzu.edu.entiy.Student;
+import fzu.edu.teacher.adapter.StuListAdapter;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;

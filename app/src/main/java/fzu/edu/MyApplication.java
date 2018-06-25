@@ -7,7 +7,6 @@ import fzu.edu.entiy.Student;
 import fzu.edu.entiy.Teacher;
 
 public class MyApplication extends Application {
-
     private static final String TEST1 = "http://2119574u5y.iask.in:10678/Amadeus";
     private static final String TEST2 = "http://192.168.1.4:8080";
 
@@ -15,7 +14,6 @@ public class MyApplication extends Application {
     private static Context context;
     private static Student student;
     private static Teacher teacher;
-
 
     @Override
     public void onCreate() {
