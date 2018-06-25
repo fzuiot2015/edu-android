@@ -115,33 +115,34 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         FragmentManager manager = getFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
-        hideFragment(transaction);
+//        hideFragment(transaction);
+
         //TODO：侧边栏点击事件
         switch (item.getItemId()) {
             case R.id.nav_syllabus:
                 if (syllabusFragment == null) {
                     syllabusFragment = new SyllabusFragment();
-                    transaction.add(R.id.main_fragment, syllabusFragment).commit();
+                    transaction.replace(R.id.main_fragment,syllabusFragment).commit();
                 } else {
-                    transaction.show(syllabusFragment).commit();
+                    transaction.replace(R.id.main_fragment,syllabusFragment).commit();
                 }
                 break;
 
             case R.id.nav_course:
                 if (courseFragment == null) {
                     courseFragment = new CourseFragment();
-                    transaction.add(R.id.main_fragment, courseFragment).commit();
+                    transaction.replace(R.id.main_fragment,courseFragment).commit();
                 } else {
-                    transaction.show(courseFragment).commit();
+                    transaction.replace(R.id.main_fragment,courseFragment).commit();
                 }
                 break;
 
             case R.id.nav_info:
                 if (infoFragment == null) {
                     infoFragment = new InfoFragment();
-                    transaction.add(R.id.main_fragment, infoFragment).commit();
+                    transaction.replace(R.id.main_fragment,infoFragment).commit();
                 } else {
-                    transaction.show(infoFragment).commit();
+                    transaction.replace(R.id.main_fragment,infoFragment).commit();
                 }
                 break;
 
@@ -149,9 +150,9 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_stu:
                 if (stuListFragment == null) {
                     stuListFragment = new StuListFragment();
-                    transaction.add(R.id.main_fragment, stuListFragment).commit();
+                    transaction.replace(R.id.main_fragment,stuListFragment).commit();
                 } else {
-                    transaction.show(stuListFragment).commit();
+                    transaction.replace(R.id.main_fragment,stuListFragment).commit();
                 }
                 break;
         }
