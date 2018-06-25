@@ -116,13 +116,13 @@ public class SyllabusFragment extends Fragment {
         for (SyllabusItem syllabusItem : list) {
             Course course = syllabusItem.getCourse();
             int courseTime1 = course.getTime1();
-            int row = courseTime1 % 10 - 1;
-            int col = courseTime1 / 10 - 1;
+            int row = courseTime1 / 10 - 1;
+            int col = courseTime1 % 10 - 1;
             contents[row][col] = course.getCname() + "\n" + course.getAddress();
 
             int courseTime2 = course.getTime2();
-            row = courseTime2 % 10 - 1;
-            col = courseTime2 / 10 - 1;
+            row = courseTime2 / 10 - 1;
+            col = courseTime2 % 10 - 1;
             contents[row][col] = course.getCname() + "\n" + course.getAddress();
         }
         getActivity().runOnUiThread(new Runnable() {
