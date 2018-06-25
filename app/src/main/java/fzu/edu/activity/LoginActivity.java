@@ -24,6 +24,7 @@ import java.lang.reflect.Type;
 
 import fzu.edu.MyApplication;
 import fzu.edu.R;
+import fzu.edu.Register;
 import fzu.edu.entiy.Result;
 import fzu.edu.entiy.Student;
 import fzu.edu.entiy.Teacher;
