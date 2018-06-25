@@ -12,6 +12,7 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,6 +40,8 @@ public class LoginActivity extends AppCompatActivity {
     private AutoCompleteTextView mAccountView;
     private EditText mPasswordView;
 
+    private RadioGroup mRadioGroup;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +63,8 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        mRadioGroup = findViewById(R.id.radio_group_login);
+
         Button mLoginButton = findViewById(R.id.login_button);
         mLoginButton.setOnClickListener(new OnClickListener() {
             @Override
@@ -67,6 +72,7 @@ public class LoginActivity extends AppCompatActivity {
                 attemptLogin();
             }
         });
+
     }
 
     /**
@@ -89,7 +95,7 @@ public class LoginActivity extends AppCompatActivity {
             mPasswordView.setError(getString(R.string.error_password_empty));
             focusView = mPasswordView;
             isValid = false;
-        }else if(!isPasswordValid(password)){
+        } else if (!isPasswordValid(password)) {
             mPasswordView.setError(getString(R.string.error_password_invalid));
             focusView = mPasswordView;
             isValid = false;
@@ -108,7 +114,16 @@ public class LoginActivity extends AppCompatActivity {
 
         if (isValid) {
             //如果输入的账号密码格式正确，进行正式的登录操作
-            login(account, password);
+            switch (mRadioGroup.getCheckedRadioButtonId()) {
+                case R.id.radio_student_login:
+                    studentLogin(account, password);
+                    break;
+                case R.id.radio_teacher_login:
+//                    teacherLogin(account, password);
+                    break;
+            }
+
+
         } else {
             //如果输入的账号密码格式错误，不进行登录操作，输入框重新获得输入焦点
             focusView.requestFocus();
@@ -138,12 +153,64 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     /**
-     * 登录
+     * 教师登录
      *
-     * @param account 账号
+     * @param account  账号
      * @param password 密码
      */
-    private void login(String account, String password) {
+    private void studentLogin(String account, String password) {
+        final Request request = new Request.Builder()
+                .url(MyApplication.getAPI() + "/TeacherServlet?method=login&tusername="
+                        + account + "&tpassword=" + password + "&phone=1").build();
+
+        OkHttpClient client = new OkHttpClient();
+        Call call = client.newCall(request);
+        call.enqueue(new Callback() {
+
+            @Override
+            public void onFailure(Call call, IOException e) {
+
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(context, "连接服务器失败", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                final String jsonRes = response.body().string();
+                Gson gson = new Gson();
+                Type type = new TypeToken<Result<Student>>() {
+                }.getType();
+                Result<Student> result = gson.fromJson(jsonRes, type);
+
+                if (result.getCode() == 1) {
+                    MyApplication.setStudent(result.getData());
+                    Intent intent = new Intent(LoginActivity.this, MainActivityForStudent.class);
+                    LoginActivity.this.startActivity(intent);
+                    LoginActivity.this.finish();
+                } else {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            mPasswordView.setError(getString(R.string.error_password_incorrect));
+                            mPasswordView.requestFocus();
+                        }
+                    });
+                }
+            }
+        });
+    }
+
+    /**
+     * 教师登录
+     *
+     * @param account  账号
+     * @param password 密码
+     */
+    private void teacherLogin(String account, String password) {
         final Request request = new Request.Builder()
                 .url(MyApplication.getAPI() + "/StudentServlet?method=login&susername=" + account
                         + "&spassword=" + password + "&phone=1").build();
@@ -173,7 +240,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 if (result.getCode() == 1) {
                     MyApplication.setStudent(result.getData());
-                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    Intent intent = new Intent(LoginActivity.this, MainActivityForStudent.class);
                     LoginActivity.this.startActivity(intent);
                     LoginActivity.this.finish();
                 } else {
@@ -188,5 +255,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+
 }
 
