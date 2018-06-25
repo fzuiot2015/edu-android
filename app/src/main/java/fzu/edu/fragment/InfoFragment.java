@@ -6,12 +6,14 @@ import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
 
 import fzu.edu.MyApplication;
 import fzu.edu.R;
+import fzu.edu.entiy.Student;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
@@ -29,33 +31,21 @@ public class InfoFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_info, container, false);
+
+        Student student = MyApplication.getStudent();
+        TextView textView = view.findViewById(R.id.item_stu_id);
+        textView.setText(student.getSusername());
+
+        TextView textView1= view.findViewById(R.id.item_stu_name);
+        textView1.setText(student.getSname());
+
+        TextView textView2=view.findViewById(R.id.item_stu_academy);
+        textView2.setText(student.getSdept());
+
+        TextView textView3=view.findViewById(R.id.item_stu_major);
+        textView3.setText(student.getSmajor());
+
         return view;
-    }
-
-
-    private void getRequest() {
-        final Request request = new Request.Builder()
-                .url(MyApplication.getAPI() + "/courseAll").build();
-
-        OkHttpClient client = new OkHttpClient();
-        Call call = client.newCall(request);
-        call.enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                getActivity().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Toast.makeText(getActivity(), "课表更新失败", Toast.LENGTH_SHORT).show();
-                    }
-                });
-
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-
-            }
-        });
     }
 
 }
