@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -19,6 +20,7 @@ import android.widget.TextView;
 
 import fzu.edu.MyApplication;
 import fzu.edu.R;
+import fzu.edu.activity.LoginActivity;
 import fzu.edu.entiy.Teacher;
 import fzu.edu.teacher.fragment.StuListFragment;
 
@@ -122,6 +124,13 @@ public class MainActivityForTeacher extends AppCompatActivity
                 } else {
                     transaction.replace(R.id.main_fragment_for_student, stuListFragment).commit();
                 }
+                break;
+
+            case R.id.nav_logout:
+                Intent intent = new Intent(MainActivityForTeacher.this, MainActivityForTeacher.class);
+                MainActivityForTeacher.this.startActivity(intent);
+                MainActivityForTeacher.this.finish();
+                MyApplication.setTeacher(null);
                 break;
         }
         DrawerLayout drawer = findViewById(R.id.drawer_layout_teacher);
