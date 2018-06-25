@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".student.fragment.CourseFragment">
+    android:background="#fffaf4"
+    tools:context=".fragment.CourseFragment">
 
     <ListView
         android:id="@+id/course_list"

@@ -53,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         mAccountView = findViewById(R.id.login_input_account);
-        mPasswordView = findViewById(R.id.login_input_password);
+        mPasswordView = findViewById(R.id.register_input_password);
 
 
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
