@@ -2,10 +2,10 @@ package fzu.edu.entiy;
 
 public class Course {
     private String cid;
-    private String cname;
-    private Teacher teacher;
+    private String cname;       //课程名
+    private Teacher teacher;    //任课教师
     private int period;
-    private String address;
+    private String address;     //上课地点
     private String week;
     private float credit;
     private int time1;

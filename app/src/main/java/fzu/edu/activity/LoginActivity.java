@@ -158,7 +158,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     /**
-     * 教师登录
+     * 学生登录
      *
      * @param account  账号
      * @param password 密码

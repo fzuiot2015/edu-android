@@ -62,7 +62,6 @@ public class CourseFragment extends Fragment {
         });
     }
 
-    // TODO: 2018/6/23 调整接口
     /**
      * 从服务器获取数据
      */

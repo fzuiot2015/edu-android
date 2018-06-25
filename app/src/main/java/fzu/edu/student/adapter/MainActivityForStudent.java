@@ -33,7 +33,6 @@ public class MainActivityForStudent extends AppCompatActivity
     private SyllabusFragment syllabusFragment;
     private CourseFragment courseFragment;
     private InfoFragment infoFragment;
-    private StuListFragment stuListFragment;// TODO: 2018/6/23 转移到教师用户界面
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -148,36 +147,11 @@ public class MainActivityForStudent extends AppCompatActivity
                 }
                 break;
 
-            // TODO: 2018/6/23 转移到教师用户界面
-            case R.id.nav_stu:
-                if (stuListFragment == null) {
-                    stuListFragment = new StuListFragment();
-                    transaction.replace(R.id.main_fragment_for_student,stuListFragment).commit();
-                } else {
-                    transaction.replace(R.id.main_fragment_for_student,stuListFragment).commit();
-                }
-                break;
+
         }
         DrawerLayout drawer = findViewById(R.id.drawer_layout_teacher);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
-    public void hideFragment(FragmentTransaction transaction){
-        //TODO：隐藏fragment
-        if(syllabusFragment !=null){
-            transaction.hide(syllabusFragment);
-        }
-        if(courseFragment!=null){
-            transaction.hide(courseFragment);
-        }
-        if(infoFragment!=null){
-            transaction.hide(infoFragment);
-        }
-
-        // TODO: 2018/6/23 转移到教师用户界面
-        if(stuListFragment!=null){
-            transaction.hide(stuListFragment);
-        }
-    }
 }

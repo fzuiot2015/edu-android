@@ -2,12 +2,12 @@ package fzu.edu.entiy;
 
 public class Student 
 {
-	private String susername;
-	private String spassword;
+	private String susername;	//账号
+	private String spassword;	//密码
 	private String sid;
-	private String sname;
-	private String sdept;
-	private String smajor;
+	private String sname;		//姓名
+	private String sdept;		//学院
+	private String smajor;		//专业
 
 	public String getSusername() {
 		return susername;

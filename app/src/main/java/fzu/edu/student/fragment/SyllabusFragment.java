@@ -78,7 +78,6 @@ public class SyllabusFragment extends Fragment {
         contents[5][6] = "微机原理及应用\nE203";
     }
 
-    // TODO: 2018/6/23 调整接口
     private void getRequest() {
 
         String sid = MyApplication.getStudent().getSid();

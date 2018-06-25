@@ -10,6 +10,10 @@ import android.widget.EditText;
 import fzu.edu.MyApplication;
 import fzu.edu.R;
 
+// TODO: 2018/6/25 移除测试类
+/**
+ * 测试用，更改Api地址
+ */
 public class SettingActivity extends AppCompatActivity {
 
     private EditText editText;
