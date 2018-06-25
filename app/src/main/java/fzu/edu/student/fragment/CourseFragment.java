@@ -1,4 +1,4 @@
-package fzu.edu.fragment;
+package fzu.edu.student.fragment;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -20,13 +20,16 @@ import fzu.edu.MyApplication;
 import fzu.edu.R;
 import fzu.edu.entiy.Course;
 import fzu.edu.entiy.Result;
-import fzu.edu.adapter.CourseListAdapter;
+import fzu.edu.student.adapter.CourseListAdapter;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
+/**
+ * 选课列表子界面
+ */
 public class CourseFragment extends Fragment {
     private List<Course> courses = new ArrayList<>();
     private CourseListAdapter courseListAdapter;
@@ -62,7 +65,6 @@ public class CourseFragment extends Fragment {
         });
     }
 
-    // TODO: 2018/6/23 调整接口
     /**
      * 从服务器获取数据
      */

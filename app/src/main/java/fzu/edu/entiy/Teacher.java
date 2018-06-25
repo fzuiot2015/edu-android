@@ -1,12 +1,15 @@
 package fzu.edu.entiy;
 
+/**
+ * 教师类
+ */
 public class Teacher {
-    private String tusername;
-    private String tpassword;
+    private String tusername;   //账号
+    private String tpassword;   //密码
     private String tid;
-    private String tname;
-    private String tdept;
-    private String tmajor;
+    private String tname;       //姓名
+    private String tdept;       //学院
+    private String tmajor;      //专业
 
     public String getTusername() {
         return tusername;

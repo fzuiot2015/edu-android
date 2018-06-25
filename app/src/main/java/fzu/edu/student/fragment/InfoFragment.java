@@ -1,4 +1,4 @@
-package fzu.edu.fragment;
+package fzu.edu.student.fragment;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -7,19 +7,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import java.io.IOException;
 
 import fzu.edu.MyApplication;
 import fzu.edu.R;
 import fzu.edu.entiy.Student;
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 
+/**
+ * 个人信息子界面
+ */
 public class InfoFragment extends Fragment {
 
     @Override

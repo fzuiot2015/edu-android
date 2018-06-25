@@ -1,4 +1,4 @@
-package fzu.edu.adapter;
+package fzu.edu.student.adapter;
 
 import android.graphics.Color;
 import android.view.LayoutInflater;
@@ -7,10 +7,10 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import fzu.edu.R;
 
 import static fzu.edu.MyApplication.getContext;
-
 
 /**
  * 课程表适配器
@@ -64,7 +64,7 @@ public class SyllabusAdapter extends BaseAdapter {
         TextView textView = convertView.findViewById(R.id.item_syllabus_text);
 
         //如果有课,那么添加数据
-        if (getItem(position)!=null) {
+        if (getItem(position) != null) {
             textView.setText((String) getItem(position));
             textView.setTextColor(Color.WHITE);
             textView.setBackgroundResource(R.color.courseItem);

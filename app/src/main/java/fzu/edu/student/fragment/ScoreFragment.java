@@ -1,4 +1,4 @@
-package fzu.edu.fragment;
+package fzu.edu.student.fragment;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -8,6 +8,9 @@ import android.view.ViewGroup;
 
 import fzu.edu.R;
 
+/**
+ * 分数查询子界面
+ */
 public class ScoreFragment extends Fragment {
 
     @Override

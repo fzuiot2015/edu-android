@@ -2,7 +2,9 @@ package fzu.edu.entiy;
 
 import java.util.List;
 
-
+/**
+ * 课表类
+ */
 public class Syllabus {
     private String yid;
     private Student student;

@@ -1,4 +1,4 @@
-package fzu.edu.fragment;
+package fzu.edu.teacher.fragment;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -18,15 +18,19 @@ import java.util.List;
 
 import fzu.edu.MyApplication;
 import fzu.edu.R;
-import fzu.edu.adapter.StuListAdapter;
+
 import fzu.edu.entiy.Result;
 import fzu.edu.entiy.Student;
+import fzu.edu.teacher.adapter.StuListAdapter;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
+/**
+ * 学生列表子界面
+ */
 public class StuListFragment extends Fragment {
     private StuListAdapter stuListAdapter;
     private List<Student> students = new ArrayList<>();

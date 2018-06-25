@@ -1,4 +1,4 @@
-package fzu.edu;
+package fzu.edu.activity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -22,8 +22,13 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 import java.lang.reflect.Type;
 
+import fzu.edu.MyApplication;
+import fzu.edu.R;
 import fzu.edu.entiy.Result;
 import fzu.edu.entiy.Student;
+import fzu.edu.entiy.Teacher;
+import fzu.edu.student.MainActivityForStudent;
+import fzu.edu.teacher.MainActivityForTeacher;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
@@ -49,7 +54,6 @@ public class LoginActivity extends AppCompatActivity {
 
         mAccountView = findViewById(R.id.login_input_account);
         mPasswordView = findViewById(R.id.register_input_password);
-
 
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -128,7 +132,7 @@ public class LoginActivity extends AppCompatActivity {
                     studentLogin(account, password);
                     break;
                 case R.id.radio_teacher_login:
-//                    teacherLogin(account, password);
+                    teacherLogin(account, password);
                     break;
             }
 
@@ -162,15 +166,15 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     /**
-     * 教师登录
+     * 学生登录
      *
      * @param account  账号
      * @param password 密码
      */
     private void studentLogin(String account, String password) {
         final Request request = new Request.Builder()
-                .url(MyApplication.getAPI() + "/TeacherServlet?method=login&tusername="
-                        + account + "&tpassword=" + password + "&phone=1").build();
+                .url(MyApplication.getAPI() + "/StudentServlet?method=login&susername="
+                        + account + "&spassword=" + password + "&phone=1").build();
 
         OkHttpClient client = new OkHttpClient();
         Call call = client.newCall(request);
@@ -196,6 +200,7 @@ public class LoginActivity extends AppCompatActivity {
                 Result<Student> result = gson.fromJson(jsonRes, type);
 
                 if (result.getCode() == 1) {
+                    MyApplication.setTeacher(null);
                     MyApplication.setStudent(result.getData());
                     Intent intent = new Intent(LoginActivity.this, MainActivityForStudent.class);
                     LoginActivity.this.startActivity(intent);
@@ -221,8 +226,8 @@ public class LoginActivity extends AppCompatActivity {
      */
     private void teacherLogin(String account, String password) {
         final Request request = new Request.Builder()
-                .url(MyApplication.getAPI() + "/StudentServlet?method=login&susername=" + account
-                        + "&spassword=" + password + "&phone=1").build();
+                .url(MyApplication.getAPI() + "/TeacherServlet?method=login&tusername="
+                        + account + "&tpassword=" + password + "&phone=1").build();
 
         OkHttpClient client = new OkHttpClient();
         Call call = client.newCall(request);
@@ -243,13 +248,14 @@ public class LoginActivity extends AppCompatActivity {
             public void onResponse(Call call, Response response) throws IOException {
                 final String jsonRes = response.body().string();
                 Gson gson = new Gson();
-                Type type = new TypeToken<Result<Student>>() {
+                Type type = new TypeToken<Result<Teacher>>() {
                 }.getType();
-                Result<Student> result = gson.fromJson(jsonRes, type);
+                Result<Teacher> result = gson.fromJson(jsonRes, type);
 
                 if (result.getCode() == 1) {
-                    MyApplication.setStudent(result.getData());
-                    Intent intent = new Intent(LoginActivity.this, MainActivityForStudent.class);
+                    MyApplication.setStudent(null);
+                    MyApplication.setTeacher(result.getData());
+                    Intent intent = new Intent(LoginActivity.this, MainActivityForTeacher.class);
                     LoginActivity.this.startActivity(intent);
                     LoginActivity.this.finish();
                 } else {
