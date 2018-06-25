@@ -5,12 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".MainActivityForStudent"
-    tools:showIn="@layout/app_bar_main">
+    tools:context=".student.MainActivityForStudent"
+    tools:showIn="@layout/app_bar_main_for_student">
 
 
     <android.support.v7.widget.ContentFrameLayout
-        android:id="@+id/main_fragment"
+        android:id="@+id/main_fragment_for_teacher"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
     </android.support.v7.widget.ContentFrameLayout>

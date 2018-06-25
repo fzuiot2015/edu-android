@@ -1,4 +1,4 @@
-package fzu.edu.fragment;
+package fzu.edu.student.fragment;
 
 
 import android.app.Fragment;

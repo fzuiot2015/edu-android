@@ -1,4 +1,4 @@
-package fzu.edu.adapter;
+package fzu.edu.teacher.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;

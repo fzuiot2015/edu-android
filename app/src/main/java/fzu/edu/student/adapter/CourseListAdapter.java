@@ -1,4 +1,4 @@
-package fzu.edu.adapter;
+package fzu.edu.student.adapter;
 
 import android.app.Activity;
 import android.app.AlertDialog;

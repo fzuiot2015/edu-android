@@ -1,4 +1,4 @@
-package fzu.edu.fragment;
+package fzu.edu.student.fragment;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -22,7 +22,7 @@ import fzu.edu.MyApplication;
 import fzu.edu.R;
 import fzu.edu.entiy.Course;
 import fzu.edu.entiy.Result;
-import fzu.edu.adapter.SyllabusAdapter;
+import fzu.edu.student.adapter.SyllabusAdapter;
 import fzu.edu.entiy.Syllabus;
 import fzu.edu.entiy.SyllabusItem;
 import okhttp3.Call;

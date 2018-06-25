@@ -1,4 +1,4 @@
-package fzu.edu;
+package fzu.edu.teacher;
 
 import android.app.AlertDialog;
 import android.app.FragmentManager;
@@ -17,56 +17,53 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import fzu.edu.MyApplication;
+import fzu.edu.R;
 import fzu.edu.entiy.Student;
-import fzu.edu.fragment.CourseFragment;
-import fzu.edu.fragment.InfoFragment;
-import fzu.edu.fragment.StuListFragment;
-import fzu.edu.fragment.SyllabusFragment;
+import fzu.edu.entiy.Teacher;
+import fzu.edu.teacher.adapter.StuListFragment;
 
 import static fzu.edu.MyApplication.getContext;
 
-public class MainActivityForStudent extends AppCompatActivity
+public class MainActivityForTeacher extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private SyllabusFragment syllabusFragment;
-    private CourseFragment courseFragment;
-    private InfoFragment infoFragment;
-    private StuListFragment stuListFragment;// TODO: 2018/6/23 转移到教师用户界面
+    private StuListFragment stuListFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main_for_teacher);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar_for_teacher);
         setSupportActionBar(toolbar);
 
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout_teacher);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        navigationView.setCheckedItem(R.id.nav_syllabus);               //侧边栏默认选项
+        NavigationView navigationView = findViewById(R.id.nav_view_for_teacher);
+        navigationView.setCheckedItem(R.id.nav_stu);               //侧边栏默认选项
         navigationView.setNavigationItemSelectedListener(this);
 
-        Student student=MyApplication.getStudent();
+        Teacher teacher= MyApplication.getTeacher();
 
         View headView =navigationView.getHeaderView(0);
         TextView userNameView=headView.findViewById(R.id.nav_header_name);
-        userNameView.setText(student.getSname());
+        userNameView.setText(teacher.getTname());
         TextView userIdView=headView.findViewById(R.id.nav_header_id);
-        userIdView.setText(student.getSusername());
+        userIdView.setText(teacher.getTid());
 
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        syllabusFragment = new SyllabusFragment();
-        transaction.add(R.id.main_fragment, syllabusFragment).commit();
+        stuListFragment = new StuListFragment();
+        transaction.add(R.id.main_fragment_for_student, stuListFragment).commit();
     }
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout_teacher);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -119,63 +116,18 @@ public class MainActivityForStudent extends AppCompatActivity
 
         //TODO：侧边栏点击事件
         switch (item.getItemId()) {
-            case R.id.nav_syllabus:
-                if (syllabusFragment == null) {
-                    syllabusFragment = new SyllabusFragment();
-                    transaction.replace(R.id.main_fragment,syllabusFragment).commit();
-                } else {
-                    transaction.replace(R.id.main_fragment,syllabusFragment).commit();
-                }
-                break;
-
-            case R.id.nav_course:
-                if (courseFragment == null) {
-                    courseFragment = new CourseFragment();
-                    transaction.replace(R.id.main_fragment,courseFragment).commit();
-                } else {
-                    transaction.replace(R.id.main_fragment,courseFragment).commit();
-                }
-                break;
-
-            case R.id.nav_info:
-                if (infoFragment == null) {
-                    infoFragment = new InfoFragment();
-                    transaction.replace(R.id.main_fragment,infoFragment).commit();
-                } else {
-                    transaction.replace(R.id.main_fragment,infoFragment).commit();
-                }
-                break;
-
-            // TODO: 2018/6/23 转移到教师用户界面
             case R.id.nav_stu:
                 if (stuListFragment == null) {
                     stuListFragment = new StuListFragment();
-                    transaction.replace(R.id.main_fragment,stuListFragment).commit();
+                    transaction.replace(R.id.main_fragment_for_student,stuListFragment).commit();
                 } else {
-                    transaction.replace(R.id.main_fragment,stuListFragment).commit();
+                    transaction.replace(R.id.main_fragment_for_student,stuListFragment).commit();
                 }
                 break;
         }
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout_teacher);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
-    public void hideFragment(FragmentTransaction transaction){
-        //TODO：隐藏fragment
-        if(syllabusFragment !=null){
-            transaction.hide(syllabusFragment);
-        }
-        if(courseFragment!=null){
-            transaction.hide(courseFragment);
-        }
-        if(infoFragment!=null){
-            transaction.hide(infoFragment);
-        }
-
-        // TODO: 2018/6/23 转移到教师用户界面
-        if(stuListFragment!=null){
-            transaction.hide(stuListFragment);
-        }
-    }
 }
