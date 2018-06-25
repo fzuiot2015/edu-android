@@ -4,7 +4,7 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_name">姓名</string>
     <string name="nav_header_id">学号</string>
-    <string name="nav_header_desc">Navigation header</string>
+    <string name="nav_header_desc">头像</string>
     <string name="action_settings">设置</string>
 
     <!-- TODO: Remove or change this placeholder text -->

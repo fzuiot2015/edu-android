@@ -1,14 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragment.InfoFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="28dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="18dp"
+                android:layout_marginBottom="18dp"
+                android:contentDescription="@string/nav_header_desc"
+                android:src="@mipmap/ic_launcher_round" />
+            <TextView
+                android:id="@+id/item_stu_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/nav_header_name"
+                android:text="111500512"
+                android:textSize="24sp" />
+            <TextView
+                android:id="@+id/item_stu_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/nav_header_name"
+                android:text="姓名"
+                android:textSize="24sp" />
+            <TextView
+                android:id="@+id/item_stu_academy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/nav_header_name"
+                android:text="学院"
+                android:textSize="24sp" />
+            <TextView
+                android:id="@+id/item_stu_major"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/nav_header_name"
+                android:text="物联网工程"
+                android:textSize="24sp" />
+        </LinearLayout>
+    </RelativeLayout>
 
 </FrameLayout>
