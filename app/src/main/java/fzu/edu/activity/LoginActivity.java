@@ -165,8 +165,8 @@ public class LoginActivity extends AppCompatActivity {
      */
     private void studentLogin(String account, String password) {
         final Request request = new Request.Builder()
-                .url(MyApplication.getAPI() + "/TeacherServlet?method=login&tusername="
-                        + account + "&tpassword=" + password + "&phone=1").build();
+                .url(MyApplication.getAPI() + "/StudentServlet?method=login&susername="
+                        + account + "&spassword=" + password + "&phone=1").build();
 
         OkHttpClient client = new OkHttpClient();
         Call call = client.newCall(request);

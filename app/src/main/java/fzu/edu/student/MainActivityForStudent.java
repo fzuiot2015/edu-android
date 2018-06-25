@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import fzu.edu.MyApplication;
 import fzu.edu.R;
+import fzu.edu.activity.LoginActivity;
 import fzu.edu.entiy.Student;
 import fzu.edu.student.fragment.CourseFragment;
 import fzu.edu.student.fragment.InfoFragment;
@@ -46,7 +47,7 @@ public class MainActivityForStudent extends AppCompatActivity
         Toolbar toolbar = findViewById(R.id.toolbar_for_student);
         setSupportActionBar(toolbar);
 
-        DrawerLayout drawer = findViewById(R.id.drawer_layout_teacher);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout_student);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -120,7 +121,6 @@ public class MainActivityForStudent extends AppCompatActivity
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         FragmentManager manager = getFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
-//        hideFragment(transaction);
 
         //TODO：侧边栏点击事件
         switch (item.getItemId()) {
@@ -152,13 +152,13 @@ public class MainActivityForStudent extends AppCompatActivity
                 break;
 
             case R.id.nav_logout:
-                Intent intent = new Intent(MainActivityForStudent.this, MainActivityForTeacher.class);
+                Intent intent = new Intent(MainActivityForStudent.this, LoginActivity.class);
                 MainActivityForStudent.this.startActivity(intent);
                 MainActivityForStudent.this.finish();
                 MyApplication.setStudent(null);
                 break;
         }
-        DrawerLayout drawer = findViewById(R.id.drawer_layout_teacher);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout_student);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }

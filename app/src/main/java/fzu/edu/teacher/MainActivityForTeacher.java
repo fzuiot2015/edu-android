@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import fzu.edu.MyApplication;
 import fzu.edu.R;
+import fzu.edu.activity.LoginActivity;
 import fzu.edu.entiy.Teacher;
 import fzu.edu.teacher.fragment.StuListFragment;
 
@@ -57,11 +58,11 @@ public class MainActivityForTeacher extends AppCompatActivity
         TextView userNameView = headView.findViewById(R.id.nav_header_name_teacher);
         userNameView.setText(teacher.getTname());
         TextView userIdView = headView.findViewById(R.id.nav_header_id_teacher);
-        userIdView.setText(teacher.getTid());
+        userIdView.setText(teacher.getTusername());
 
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         stuListFragment = new StuListFragment();
-        transaction.add(R.id.main_fragment_for_student, stuListFragment).commit();
+        transaction.add(R.id.main_fragment_for_teacher, stuListFragment).commit();
     }
 
     @Override
@@ -115,21 +116,20 @@ public class MainActivityForTeacher extends AppCompatActivity
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         FragmentManager manager = getFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
-//        hideFragment(transaction);
 
         //TODO：侧边栏点击事件
         switch (item.getItemId()) {
             case R.id.nav_stu:
                 if (stuListFragment == null) {
                     stuListFragment = new StuListFragment();
-                    transaction.replace(R.id.main_fragment_for_student, stuListFragment).commit();
+                    transaction.replace(R.id.main_fragment_for_teacher, stuListFragment).commit();
                 } else {
-                    transaction.replace(R.id.main_fragment_for_student, stuListFragment).commit();
+                    transaction.replace(R.id.main_fragment_for_teacher, stuListFragment).commit();
                 }
                 break;
 
             case R.id.nav_logout:
-                Intent intent = new Intent(MainActivityForTeacher.this, MainActivityForTeacher.class);
+                Intent intent = new Intent(MainActivityForTeacher.this, LoginActivity.class);
                 MainActivityForTeacher.this.startActivity(intent);
                 MainActivityForTeacher.this.finish();
                 MyApplication.setTeacher(null);
