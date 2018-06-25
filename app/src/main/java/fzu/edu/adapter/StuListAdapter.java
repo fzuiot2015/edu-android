@@ -34,8 +34,6 @@ public class StuListAdapter extends ArrayAdapter<Student> {
             view = convertView;
         }
 
-        //测试数据用
-
         TextView textView=view.findViewById(R.id.item_stu_id);
         textView.setText(student.getSusername());
         TextView textView1=view.findViewById(R.id.item_stu_major);
@@ -44,7 +42,6 @@ public class StuListAdapter extends ArrayAdapter<Student> {
         textView2.setText(student.getSname());
         TextView textView3=view.findViewById(R.id.item_stu_academy);
         textView3.setText(student.getSdept());
-
 
         return view;
     }

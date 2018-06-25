@@ -25,7 +25,7 @@ import fzu.edu.fragment.SyllabusFragment;
 
 import static fzu.edu.MyApplication.getContext;
 
-public class MainActivity extends AppCompatActivity
+public class MainActivityForStudent extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private SyllabusFragment syllabusFragment;
