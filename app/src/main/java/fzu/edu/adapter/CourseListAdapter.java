@@ -57,7 +57,7 @@ public class CourseListAdapter extends ArrayAdapter<Course> {
         textView.setText(course.getCname());
 
         TextView textView1 = view.findViewById(R.id.item_course_teacher);
-        textView1.setText(course.getTeacher().getTname());
+        textView1.setText("任课教师："+course.getTeacher().getTname());
 
         RelativeLayout layout = view.findViewById(R.id.item_course);
         layout.setOnClickListener(new View.OnClickListener() {
