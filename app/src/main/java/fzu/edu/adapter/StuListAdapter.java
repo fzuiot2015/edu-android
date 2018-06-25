@@ -36,8 +36,15 @@ public class StuListAdapter extends ArrayAdapter<Student> {
 
         //测试数据用
 
-        TextView textView=view.findViewById(R.id.item_stu_test);
-        textView.setText(student.toString());
+        TextView textView=view.findViewById(R.id.item_stu_id);
+        textView.setText(student.getSusername());
+        TextView textView1=view.findViewById(R.id.item_stu_major);
+        textView1.setText(student.getSmajor());
+        TextView textView2=view.findViewById(R.id.item_stu_name);
+        textView2.setText(student.getSname());
+        TextView textView3=view.findViewById(R.id.item_stu_academy);
+        textView3.setText(student.getSdept());
+
 
         return view;
     }

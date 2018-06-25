@@ -10,7 +10,7 @@ public class MyApplication extends Application {
     private static final String TEST1="http://2119574u5y.iask.in:10678/Amadeus";
     private static final String TEST2="http://192.168.1.4:8080";
 
-    private static String API = TEST2;
+    private static String API = TEST1;
     private static Context context;
     private static Student student;
 
