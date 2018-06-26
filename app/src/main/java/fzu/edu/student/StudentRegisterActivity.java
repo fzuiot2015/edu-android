@@ -28,7 +28,7 @@ import okhttp3.Response;
 
 public class StudentRegisterActivity extends AppCompatActivity {
 
-    private Context context=this;
+    private Context context = this;
 
     private AutoCompleteTextView mAccount;
     private EditText mPassword;
@@ -51,7 +51,7 @@ public class StudentRegisterActivity extends AppCompatActivity {
                 String account = mAccount.getText().toString();
                 String password = mPassword.getText().toString();
                 String passwordCheck = mPasswordCheck.getText().toString();
-                String name=mName.getText().toString();
+                String name = mName.getText().toString();
                 String sdept = "物理与信息工程学院";
                 String smajor = "物联网工程";
 
@@ -60,12 +60,20 @@ public class StudentRegisterActivity extends AppCompatActivity {
                 if (!password.equals(passwordCheck)) {
                     mPasswordCheck.setError("两次输入的密码不一致");
                     isValid = false;
+                }else if (account.length() == 0) {
+                    mAccount.setError("输入账号不能为空！");
+                    isValid = false;
+                } else if (account.length() != 9) {
+                    mAccount.setError("请输入正确学号");
+                    isValid = false;
+                }else if (name.length() == 0) {
+                    mName.setError("输入姓名不能为空！");
+                    isValid = false;
                 }
-
                 if (isValid) {
-                    String url = MyApplication.getAPI()+"/StudentServlet?method=regist&susername="
-                    +account+"&spassword="+password+"&sname="+name+"&sdept="+sdept+"&smajor="
-                            +smajor+"&phone=1";
+                    String url = MyApplication.getAPI() + "/StudentServlet?method=regist&susername="
+                            + account + "&spassword=" + password + "&sname=" + name + "&sdept=" + sdept + "&smajor="
+                            + smajor + "&phone=1";
                     register(url);
                 }
             }
