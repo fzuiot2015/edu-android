@@ -3,6 +3,10 @@ package fzu.edu.teacher.adapter;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.SpannedString;
+import android.text.style.AbsoluteSizeSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,7 +59,14 @@ public class StuListAdapter extends ArrayAdapter<Report> {
         ReportItem reportItem=report.getReportItems().get(0);
         if(reportItem!=null){
             editText.setText(String.valueOf(reportItem.getScore()));
+            button.setVisibility(view.INVISIBLE);
+            editText.setEnabled(false);
         }else {
+            SpannableString aa=new SpannableString("成绩未录入");
+            AbsoluteSizeSpan ass= new AbsoluteSizeSpan(15,true);
+            aa.setSpan(ass,0,aa.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            editText.setHint(new SpannedString(aa));
+
 
         }
 

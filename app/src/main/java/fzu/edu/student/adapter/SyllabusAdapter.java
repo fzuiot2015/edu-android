@@ -9,6 +9,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Random;
+
 import fzu.edu.R;
 import fzu.edu.entiy.Course;
 
@@ -64,16 +66,17 @@ public class SyllabusAdapter extends BaseAdapter {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_syllabus, null);
         }
         TextView textView = convertView.findViewById(R.id.item_syllabus_name);
-        TextView textView1=convertView.findViewById(R.id.item_syllabus_addr);
-        RelativeLayout relativeLayout=convertView.findViewById(R.id.item_syllabus);
-
+        TextView textView1 = convertView.findViewById(R.id.item_syllabus_addr);
+        RelativeLayout relativeLayout = convertView.findViewById(R.id.item_syllabus);
 
         //如果有课,那么添加数据
-        Course course=getItem(position);
-        if ( course!= null) {
+        Course course = getItem(position);
+        if (course != null) {
             textView.setText(course.getCname());
             textView1.setText(course.getAddress());
-            relativeLayout.setBackgroundResource(R.color.courseItem);
+            int[] background = {R.color.courseItem, R.color.courseItem1, R.color.courseItem2};
+            Random random = new Random();
+            relativeLayout.setBackgroundResource(background[random.nextInt(3)]);
 
             convertView.setOnClickListener(new View.OnClickListener() {
                 @Override
