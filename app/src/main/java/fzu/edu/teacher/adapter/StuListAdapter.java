@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import java.util.List;
@@ -16,19 +18,19 @@ import fzu.edu.entiy.Report;
 import fzu.edu.entiy.ReportItem;
 import fzu.edu.entiy.Student;
 
-public class StuListAdapter extends ArrayAdapter<Student> {
+public class StuListAdapter extends ArrayAdapter<Report> {
 
     private int resourceId;
 
-    public StuListAdapter(@NonNull Context context, int resource, List<Student> students) {
-        super(context, resource, students);
+    public StuListAdapter(@NonNull Context context, int resource, List<Report> reports) {
+        super(context, resource, reports);
         resourceId = resource;
     }
 
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        Student student = getItem(position);
+        Report report = getItem(position);
         View view;
         if (convertView == null) {
             view = LayoutInflater.from(getContext()).inflate(resourceId, null);
@@ -36,10 +38,7 @@ public class StuListAdapter extends ArrayAdapter<Student> {
             view = convertView;
         }
 
-        Report report=new Report();
-        student=report.getStudent();
-
-
+        Student student=report.getStudent();
 
         TextView textView=view.findViewById(R.id.item_stu_id);
         textView.setText(student.getSusername());
@@ -49,6 +48,18 @@ public class StuListAdapter extends ArrayAdapter<Student> {
         textView2.setText(student.getSname());
         TextView textView3=view.findViewById(R.id.item_stu_academy);
         textView3.setText(student.getSdept());
+        EditText editText=view.findViewById(R.id.item_stu_score_edit);
+
+        Button button=view.findViewById(R.id.item_stu_score_button);
+
+        ReportItem reportItem=report.getReportItems().get(0);
+        if(reportItem!=null){
+            editText.setText(String.valueOf(reportItem.getScore()));
+        }else {
+
+        }
+
+
 
 
         return view;
