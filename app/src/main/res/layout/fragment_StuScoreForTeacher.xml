@@ -3,16 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".student.fragment.TestFragment">
+    tools:context=".student.fragment.StudentScoreForTeacher">
 
-    <Button
-        android:id="@+id/button_test"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+
        <ListView
         android:id="@+id/list_test"
         android:layout_width="match_parent"
         android:layout_height="match_parent"></ListView>
+
 
 
 

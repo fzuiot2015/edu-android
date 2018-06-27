@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="160dp">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/textview_border"
+        android:paddingBottom="14dp">
+
+        <TextView
+            android:id="@+id/item_stu_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="18dp"
+            android:text="曾锦容"
+            android:textColor="#000000"
+            android:textSize="26dp" />
+
+        <TextView
+            android:id="@+id/item_stu_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignTop="@+id/item_stu_name"
+            android:layout_marginStart="125dp"
+            android:text="111500507" />
+
+        <TextView
+            android:id="@+id/item_stu_academy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/item_stu_name"
+            android:layout_below="@+id/item_stu_name"
+            android:text="物理与信息工程学院"
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/item_stu_major"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignStart="@+id/item_stu_name"
+            android:layout_marginBottom="38dp"
+            android:text="物联网工程" />
+
+
+        <EditText
+            android:id="@+id/item_stu_score_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignTop="@+id/item_stu_name"
+            android:layout_marginEnd="35dp"
+            android:text="98"
+            android:textColor="#96a48b"
+            android:textSize="32dp" />
+
+        <Button
+            android:id="@+id/item_stu_score_button"
+            android:layout_width="73dp"
+            android:layout_height="36dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignTop="@+id/item_stu_major"
+            android:layout_marginEnd="21dp"
+            android:background="@drawable/button_border"
+            android:text="录入" />
+    </RelativeLayout>
+</RelativeLayout>
