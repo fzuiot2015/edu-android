@@ -120,7 +120,7 @@ public class StuListAdapter extends ArrayAdapter<Report> {
     private void setScore(String cid, String sid, String score) {
         final Request request = new Request.Builder()
                 .url(MyApplication.getAPI() + "/ReportServlet?method=add&sid="
-                        + sid + "&cid=" + cid + "&score=" + score + "phone=1").build();
+                        + sid + "&cid=" + cid + "&score=" + score + "&phone=1").build();
 
         OkHttpClient client = new OkHttpClient();
         Call call = client.newCall(request);
@@ -140,35 +140,27 @@ public class StuListAdapter extends ArrayAdapter<Report> {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 final String jsonRes = response.body().string();
-                activity.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Toast.makeText(activity, jsonRes, Toast.LENGTH_SHORT).show();
-                    }
-                });
+                Gson gson = new Gson();
+                Type type = new TypeToken<Result>() {
+                }.getType();
+                Result result = gson.fromJson(jsonRes, type);
 
-                // TODO: 2018/6/27 测试json
-//                Gson gson = new Gson();
-//                Type type = new TypeToken<Result>() {
-//                }.getType();
-//                Result result = gson.fromJson(jsonRes, type);
-//
-//                if (result.getCode() == 1) {
-//                    activity.runOnUiThread(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            Toast.makeText(activity, "成绩录入成功", Toast.LENGTH_SHORT).show();
-//                            fragment.refresh();
-//                        }
-//                    });
-//                } else {
-//                   activity.runOnUiThread(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            Toast.makeText(activity, "成绩录入失败", Toast.LENGTH_SHORT).show();
-//                        }
-//                    });
-//                }
+                if (result.getCode() == 1) {
+                    activity.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(activity, "成绩录入成功", Toast.LENGTH_SHORT).show();
+                            fragment.refresh();
+                        }
+                    });
+                } else {
+                   activity.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(activity, "成绩录入失败", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
             }
         });
     }

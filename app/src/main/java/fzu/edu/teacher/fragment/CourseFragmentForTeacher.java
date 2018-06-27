@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -45,8 +44,8 @@ public class CourseFragmentForTeacher extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_course_list_for_teacher, container, false);
 
-        ListView listView = view.findViewById(R.id.course_list_teacher);
-        courseListAdapter = new CourseListAdapterForTeacher(getActivity(), R.layout.item_course_teacher, courses);
+        ListView listView = view.findViewById(R.id.course_list_for_teacher);
+        courseListAdapter = new CourseListAdapterForTeacher(getActivity(), R.layout.item_course_for_teacher, courses);
         listView.setAdapter(courseListAdapter);
         getRequest();
         return view;
