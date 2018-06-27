@@ -52,7 +52,7 @@ public class CourseListAdapterForTeacher extends ArrayAdapter<Course> {
         layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                StuListFragment stuListFragment = StuListFragment.newInsatnce(course.getCid());
+                StuListFragment stuListFragment = StuListFragment.newInstance(course.getCid());
                 activity.getFragmentManager().beginTransaction()
                         .replace(R.id.main_fragment_for_teacher, stuListFragment, null)
                         .commit();
