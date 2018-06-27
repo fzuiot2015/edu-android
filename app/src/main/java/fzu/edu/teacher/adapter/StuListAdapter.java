@@ -12,6 +12,8 @@ import android.widget.TextView;
 import java.util.List;
 
 import fzu.edu.R;
+import fzu.edu.entiy.Report;
+import fzu.edu.entiy.ReportItem;
 import fzu.edu.entiy.Student;
 
 public class StuListAdapter extends ArrayAdapter<Student> {
@@ -34,7 +36,10 @@ public class StuListAdapter extends ArrayAdapter<Student> {
             view = convertView;
         }
 
-        //测试数据用
+        Report report=new Report();
+        student=report.getStudent();
+
+
 
         TextView textView=view.findViewById(R.id.item_stu_id);
         textView.setText(student.getSusername());
