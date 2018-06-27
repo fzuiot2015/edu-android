@@ -68,7 +68,6 @@ public class SyllabusAdapter extends BaseAdapter {
         Course course=getItem(position);
         if ( course!= null) {
             textView.setText(course.getCname());
-//            textView.setTextColor(Color.WHITE);
             textView.setBackgroundResource(R.color.courseItem);
 
             convertView.setOnClickListener(new View.OnClickListener() {

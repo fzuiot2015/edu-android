@@ -52,20 +52,6 @@ public class CourseFragment extends Fragment {
     }
 
     /**
-     * 测试数据
-     */
-    private void initData() {
-
-        getActivity().runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                Toast.makeText(getActivity(), "课表列表加载测试", Toast.LENGTH_SHORT).show();
-                courseListAdapter.notifyDataSetChanged();
-            }
-        });
-    }
-
-    /**
      * 从服务器获取数据
      */
     private void getRequest() {

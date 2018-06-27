@@ -24,7 +24,7 @@
             android:imeOptions="actionNext"
             android:inputType="text"
             android:maxLines="1"
-            android:nextFocusForward="@id/register_input_id_student"
+            android:nextFocusForward="@id/register_input_password_student"
             android:singleLine="true" />
 
     </android.support.design.widget.TextInputLayout>
@@ -40,7 +40,7 @@
         tools:layout_editor_absoluteY="203dp">
 
         <EditText
-            android:id="@+id/register_input_password_srudent"
+            android:id="@+id/register_input_password_student"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/prompt_password"
@@ -92,7 +92,7 @@
             android:imeOptions="actionUnspecified"
             android:inputType="text"
             android:maxLines="1"
-            android:nextFocusForward="@id/register_input_password_srudent"
+            android:nextFocusForward="@id/register_input_password_student"
             android:singleLine="true" />
 
     </android.support.design.widget.TextInputLayout>

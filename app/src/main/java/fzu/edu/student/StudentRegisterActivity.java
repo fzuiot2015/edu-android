@@ -42,7 +42,7 @@ public class StudentRegisterActivity extends AppCompatActivity {
 
         mAccount = findViewById(R.id.register_input_account_student);
         mName = findViewById(R.id.register_input_name_student);
-        mPassword = findViewById(R.id.register_input_password_srudent);
+        mPassword = findViewById(R.id.register_input_password_student);
         mPasswordCheck = findViewById(R.id.register_input_password_check_student);
         Button mRegister = findViewById(R.id.register_button_student);
         mRegister.setOnClickListener(new View.OnClickListener() {
@@ -52,8 +52,8 @@ public class StudentRegisterActivity extends AppCompatActivity {
                 String password = mPassword.getText().toString();
                 String passwordCheck = mPasswordCheck.getText().toString();
                 String name = mName.getText().toString();
-                String sdept = "物理与信息工程学院";
-                String smajor = "物联网工程";
+                String sdept = "abc";
+                String smajor = "abc";
 
                 boolean isValid = true;
 
@@ -83,7 +83,6 @@ public class StudentRegisterActivity extends AppCompatActivity {
     private void register(String url) {
         final Request request = new Request.Builder()
                 .url(url).build();
-
 
         OkHttpClient client = new OkHttpClient();
         Call call = client.newCall(request);
