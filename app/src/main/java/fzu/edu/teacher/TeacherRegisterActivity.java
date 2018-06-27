@@ -20,9 +20,12 @@ import fzu.edu.MyApplication;
 import fzu.edu.R;
 import fzu.edu.entiy.Result;
 import fzu.edu.entiy.Student;
+import fzu.edu.entiy.Teacher;
 import fzu.edu.student.MainActivityForStudent;
+import fzu.edu.student.StudentRegisterActivity;
 import okhttp3.Call;
 import okhttp3.Callback;
+import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -59,25 +62,31 @@ public class TeacherRegisterActivity extends AppCompatActivity {
                 String major = "物联网工程";
 
                 boolean isValid = true;
-
                 if (!password.equals(passwordCheck)) {
                     mPasswordCheck.setError("两次输入的密码不一致");
                     isValid = false;
-                }else if (account.length() == 0) {
+                } else if (account.isEmpty()) {
                     mAccount.setError("输入账号不能为空！");
                     isValid = false;
-                } else if (account.length() != 9) {
-                    mAccount.setError("请输入正确教工号号");
+                } else if (account.length() < 3 || account.length() > 12) {
+                    mAccount.setError("输入账号长度应为[3-12]个字符！");
                     isValid = false;
-                }else if (name.length() == 0) {
+                } else  if(password.isEmpty()){
+                    mPassword.setError("输入密码不能为空！");
+                    isValid = false;
+                }else if(password.length()<3||password.length()>12){
+                    mPassword.setError("输入密码长度应为[3-12]个字符！");
+                    isValid = false;
+                }else if (name.isEmpty()) {
                     mName.setError("输入姓名不能为空！");
                     isValid = false;
+                }else if(name.length()<2||name.length()>4){
+                    mName.setError("输入姓名长度应为[2-4]个字符！");
+                    isValid = false;
                 }
+
                 if (isValid) {
-                    String url = MyApplication.getAPI() + "/TeacherServlet?method=regist&tusername="
-                            + account+"&tpassword="+password+"&tname="
-                            + name+"&tdept="+dept+"&tmajor="+major+"&phone=1";
-                    register(url);
+                    register(account, password, name, dept, major);
                 }
             }
         });
@@ -85,18 +94,24 @@ public class TeacherRegisterActivity extends AppCompatActivity {
 
 
 
-    private void register(String url) {
-        final Request request = new Request.Builder()
-                .url(url).build();
-
-
+    private void register(String account, String password, String name, String dept, String major) {
         OkHttpClient client = new OkHttpClient();
+        FormBody.Builder builder = new FormBody.Builder();
+        builder.add("method", "regist");
+        builder.add("tusername", account);
+        builder.add("tpassword", password);
+        builder.add("tname", name);
+        builder.add("tdept", dept);
+        builder.add("tmajor", major);
+        builder.add("phone", "1");
+
+        final Request request = new Request.Builder()
+                .url(MyApplication.getAPI() + "/TeacherServlet").post(builder.build()).build();
+
         Call call = client.newCall(request);
         call.enqueue(new Callback() {
-
             @Override
             public void onFailure(Call call, IOException e) {
-
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -106,12 +121,12 @@ public class TeacherRegisterActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onResponse(Call call, Response response) throws IOException {
+            public void onResponse(Call call, final Response response) throws IOException {
                 final String jsonRes = response.body().string();
                 Gson gson = new Gson();
-                Type type = new TypeToken<Result<Student>>() {
+                Type type = new TypeToken<Result<Teacher>>() {
                 }.getType();
-                Result<Student> result = gson.fromJson(jsonRes, type);
+                Result<Teacher> result = gson.fromJson(jsonRes, type);
 
                 if (result.getCode() == 1) {
                     runOnUiThread(new Runnable() {
@@ -120,15 +135,16 @@ public class TeacherRegisterActivity extends AppCompatActivity {
                             Toast.makeText(context, "注册成功", Toast.LENGTH_SHORT).show();
                         }
                     });
-                    MyApplication.setTeacher(null);
-                    MyApplication.setStudent(result.getData());
-                    Intent intent = new Intent(TeacherRegisterActivity.this, MainActivityForStudent.class);
+                    MyApplication.setStudent(null);
+                    MyApplication.setTeacher(result.getData());
+                    Intent intent = new Intent(TeacherRegisterActivity.this, MainActivityForTeacher.class);
                     TeacherRegisterActivity.this.startActivity(intent);
                     TeacherRegisterActivity.this.finish();
                 } else {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
+                            Toast.makeText(context, jsonRes, Toast.LENGTH_LONG).show();
                             mAccount.setError("该账号已被注册");
                             mAccount.requestFocus();
                         }
@@ -136,6 +152,8 @@ public class TeacherRegisterActivity extends AppCompatActivity {
                 }
             }
         });
+
     }
+
 
 }

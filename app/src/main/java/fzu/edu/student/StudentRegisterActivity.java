@@ -56,42 +56,54 @@ public class StudentRegisterActivity extends AppCompatActivity {
                 String sdept = "abc";
                 String smajor = "abc";
 
-                Toast.makeText(context, account+password+name+sdept+smajor, Toast.LENGTH_LONG).show();
+
                 boolean isValid = true;
 
                 if (!password.equals(passwordCheck)) {
                     mPasswordCheck.setError("两次输入的密码不一致");
                     isValid = false;
-                }else if (account.length() == 0) {
+                } else if (account.isEmpty()) {
                     mAccount.setError("输入账号不能为空！");
                     isValid = false;
-                } else if (name.length() == 0) {
+                } else if (account.length() < 3 || account.length() > 12) {
+                    mAccount.setError("输入账号长度应为[3-12]个字符！");
+                    isValid = false;
+                } else  if(password.isEmpty()){
+                    mPassword.setError("输入密码不能为空！");
+                    isValid = false;
+                }else if(password.length()<3||password.length()>12){
+                    mPassword.setError("输入密码长度应为[3-12]个字符！");
+                    isValid = false;
+                }else if (name.isEmpty()) {
                     mName.setError("输入姓名不能为空！");
                     isValid = false;
+                }else if(name.length()<2||name.length()>4){
+                    mName.setError("输入姓名长度应为[2-4]个字符！");
+                    isValid = false;
                 }
+
                 if (isValid) {
-                    register(account,password,name,sdept,smajor);
+                    register(account, password, name, sdept, smajor);
                 }
             }
         });
     }
 
-    private void register(String account,String password,String name,String dept,String major){
+    private void register(String account, String password, String name, String dept, String major) {
+        OkHttpClient client = new OkHttpClient();
+        FormBody.Builder builder = new FormBody.Builder();
+        builder.add("method", "regist");
+        builder.add("susername", account);
+        builder.add("spassword", password);
+        builder.add("sname", name);
+        builder.add("sdept", dept);
+        builder.add("smajor", major);
+        builder.add("phone", "1");
 
-        OkHttpClient client=new OkHttpClient();
-        FormBody.Builder builder=new FormBody.Builder();
-        builder.add("method","regist");
-        builder.add("susername",account);
-        builder.add("spassword",password);
-        builder.add("sname",name);
-        builder.add("sdept",dept);
-        builder.add("smajor",major);
-        builder.add("phone","1");
+        final Request request = new Request.Builder()
+                .url(MyApplication.getAPI() + "/StudentServlet").post(builder.build()).build();
 
-        final Request request=new Request.Builder()
-                .url(MyApplication.getAPI()+"/StudentServlet").post(builder.build()).build();
-
-        Call call=client.newCall(request);
+        Call call = client.newCall(request);
         call.enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
@@ -104,7 +116,7 @@ public class StudentRegisterActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onResponse(Call call, Response response) throws IOException {
+            public void onResponse(Call call, final Response response) throws IOException {
                 final String jsonRes = response.body().string();
                 Gson gson = new Gson();
                 Type type = new TypeToken<Result<Student>>() {
