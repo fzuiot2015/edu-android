@@ -25,12 +25,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
+        android:textColor="#8a8a8a"
         android:text="@string/nav_header_name"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
     <TextView
         android:id="@+id/nav_header_id_student"
         android:layout_width="wrap_content"
+        android:textColor="#8a8a8a"
         android:layout_height="wrap_content"
         android:text="@string/nav_header_id" />
 
