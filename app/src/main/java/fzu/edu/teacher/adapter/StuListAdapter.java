@@ -60,8 +60,6 @@ public class StuListAdapter extends ArrayAdapter<Report> {
         }
 
 
-
-
         return view;
     }
 }

@@ -18,9 +18,9 @@ import java.util.List;
 
 import fzu.edu.MyApplication;
 import fzu.edu.R;
-import fzu.edu.entiy.Report;
+import fzu.edu.entiy.Course;
 import fzu.edu.entiy.Result;
-import fzu.edu.teacher.adapter.StuListAdapter;
+import fzu.edu.teacher.adapter.CourseListAdapterForTeacher;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
@@ -28,52 +28,36 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 /**
- * 学生列表子界面
+ * 课程列表子界面
  */
-public class StuListFragment extends Fragment {
-    private StuListAdapter stuListAdapter;
-    private List<Report> reports = new ArrayList<>();
-    private String cid;
-
-    public static StuListFragment newInsatnce(String cid) {
-        StuListFragment stuListFragment = new StuListFragment();
-        Bundle bundle = new Bundle();
-        bundle.putString("cid", cid);
-        stuListFragment.setArguments(bundle);
-        return stuListFragment;
-    }
+public class CourseFragmentForTeacher extends Fragment {
+    private List<Course> courses = new ArrayList<>();
+    private CourseListAdapterForTeacher courseListAdapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        Bundle args=getArguments();
-        if(args!=null){
-            cid=args.getString("cid");
-        }
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_course_list_for_teacher, container, false);
 
-        View view = inflater.inflate(R.layout.fragment_stulist, container, false);
-        ListView listView = view.findViewById(R.id.list_stu);
-        stuListAdapter = new StuListAdapter(getActivity(), R.layout.item_stulist_score, reports);
-        listView.setAdapter(stuListAdapter);
+        ListView listView = view.findViewById(R.id.course_list_teacher);
+        courseListAdapter = new CourseListAdapterForTeacher(getActivity(), R.layout.item_course_teacher, courses);
+        listView.setAdapter(courseListAdapter);
         getRequest();
         return view;
     }
 
     /**
-     * 从服务器获取数据,通过课程号 cid 查询对应的学生列表
+     * 从服务器获取数据
      */
     private void getRequest() {
-
         final Request request = new Request.Builder()
-                .url(MyApplication.getAPI() + "/StudentServlet?method=findAllStudentByCid2&cid="
-                        + cid + "&phone=1").build();
+                .url(MyApplication.getAPI() + "/CourseServlet?method=findByTid&tid="
+                        + MyApplication.getTeacher().getTid() + "&phone=1").build();
 
         OkHttpClient client = new OkHttpClient();
         Call call = client.newCall(request);
@@ -83,7 +67,7 @@ public class StuListFragment extends Fragment {
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(getActivity(), "学生列表加载失败", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "课程列表加载失败", Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -92,24 +76,21 @@ public class StuListFragment extends Fragment {
             public void onResponse(Call call, Response response) throws IOException {
                 final String jsonRes = response.body().string();
                 Gson gson = new Gson();
-                Type type = new TypeToken<Result<List<Report>>>() {
+                Type type = new TypeToken<Result<List<Course>>>() {
                 }.getType();
-                Result<List<Report>> result = gson.fromJson(jsonRes, type);
-                reports.clear();
-                reports.addAll(result.getData());
+                Result<List<Course>> result = gson.fromJson(jsonRes, type);
+                courses.clear();
+                courses.addAll(result.getData());
 
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(getActivity(), "学生列表加载成功", Toast.LENGTH_SHORT).show();
-                        stuListAdapter.notifyDataSetChanged();
+                        Toast.makeText(getActivity(), "课表列表加载成功", Toast.LENGTH_SHORT).show();
+                        courseListAdapter.notifyDataSetChanged();
                     }
                 });
             }
         });
     }
 
-    public void setCid(String cid) {
-        this.cid = cid;
-    }
 }
