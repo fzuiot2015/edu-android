@@ -22,6 +22,7 @@ import fzu.edu.entiy.Result;
 import fzu.edu.entiy.Student;
 import okhttp3.Call;
 import okhttp3.Callback;
+import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -55,6 +56,7 @@ public class StudentRegisterActivity extends AppCompatActivity {
                 String sdept = "abc";
                 String smajor = "abc";
 
+                Toast.makeText(context, account+password+name+sdept+smajor, Toast.LENGTH_LONG).show();
                 boolean isValid = true;
 
                 if (!password.equals(passwordCheck)) {
@@ -63,34 +65,36 @@ public class StudentRegisterActivity extends AppCompatActivity {
                 }else if (account.length() == 0) {
                     mAccount.setError("输入账号不能为空！");
                     isValid = false;
-                } else if (account.length() != 9) {
-                    mAccount.setError("请输入正确学号");
-                    isValid = false;
-                }else if (name.length() == 0) {
+                } else if (name.length() == 0) {
                     mName.setError("输入姓名不能为空！");
                     isValid = false;
                 }
                 if (isValid) {
-                    String url = MyApplication.getAPI() + "/StudentServlet?method=regist&susername="
-                            + account + "&spassword=" + password + "&sname=" + name + "&sdept=" + sdept + "&smajor="
-                            + smajor + "&phone=1";
-                    register(url);
+                    register(account,password,name,sdept,smajor);
                 }
             }
         });
     }
 
-    private void register(String url) {
-        final Request request = new Request.Builder()
-                .url(url).build();
+    private void register(String account,String password,String name,String dept,String major){
 
-        OkHttpClient client = new OkHttpClient();
-        Call call = client.newCall(request);
+        OkHttpClient client=new OkHttpClient();
+        FormBody.Builder builder=new FormBody.Builder();
+        builder.add("method","regist");
+        builder.add("susername",account);
+        builder.add("spassword",password);
+        builder.add("sname",name);
+        builder.add("sdept",dept);
+        builder.add("smajor",major);
+        builder.add("phone","1");
+
+        final Request request=new Request.Builder()
+                .url(MyApplication.getAPI()+"/StudentServlet").post(builder.build()).build();
+
+        Call call=client.newCall(request);
         call.enqueue(new Callback() {
-
             @Override
             public void onFailure(Call call, IOException e) {
-
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -130,6 +134,8 @@ public class StudentRegisterActivity extends AppCompatActivity {
                 }
             }
         });
+
     }
+
 
 }

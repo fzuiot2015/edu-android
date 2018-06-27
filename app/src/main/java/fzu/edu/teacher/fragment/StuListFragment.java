@@ -19,6 +19,7 @@ import java.util.List;
 import fzu.edu.MyApplication;
 import fzu.edu.R;
 
+import fzu.edu.entiy.Report;
 import fzu.edu.entiy.Result;
 import fzu.edu.entiy.Student;
 import fzu.edu.teacher.adapter.StuListAdapter;
@@ -33,7 +34,7 @@ import okhttp3.Response;
  */
 public class StuListFragment extends Fragment {
     private StuListAdapter stuListAdapter;
-    private List<Student> students = new ArrayList<>();
+    private List<Report> reports = new ArrayList<>();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -46,7 +47,7 @@ public class StuListFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_stulist, container, false);
         ListView listView = view.findViewById(R.id.list_stu);
-        stuListAdapter = new StuListAdapter(getActivity(), R.layout.item_stulist, students);
+        stuListAdapter = new StuListAdapter(getActivity(), R.layout.item_stulist_score, reports);
         listView.setAdapter(stuListAdapter);
         getRequest();
         return view;
@@ -60,7 +61,8 @@ public class StuListFragment extends Fragment {
         String cid = "2c8eb2ec8d6c4c06959a9570d794de35";
 
         final Request request = new Request.Builder()
-                .url(MyApplication.getAPI() + "/StudentServlet?method=findAllStudentByCid&cid=" + cid + "&phone=1").build();
+                .url(MyApplication.getAPI() + "/StudentServlet?method=findAllStudentByCid2&cid="
+                        +cid+"&phone=1").build();
 
         OkHttpClient client = new OkHttpClient();
         Call call = client.newCall(request);
@@ -79,11 +81,11 @@ public class StuListFragment extends Fragment {
             public void onResponse(Call call, Response response) throws IOException {
                 final String jsonRes = response.body().string();
                 Gson gson = new Gson();
-                Type type = new TypeToken<Result<List<Student>>>() {
+                Type type = new TypeToken<Result<List<Report>>>() {
                 }.getType();
-                Result<List<Student>> result = gson.fromJson(jsonRes, type);
-                students.clear();
-                students.addAll(result.getData());
+                Result<List<Report>> result = gson.fromJson(jsonRes, type);
+                reports.clear();
+                reports.addAll(result.getData());
 
                 getActivity().runOnUiThread(new Runnable() {
                     @Override

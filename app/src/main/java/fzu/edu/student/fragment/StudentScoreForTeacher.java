@@ -23,7 +23,7 @@ public class StudentScoreForTeacher extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_StuScoreForTeacher, container, false);
+        View view = inflater.inflate(R.layout.fragment_stuscoreforteacher, container, false);
         Student student = MyApplication.getStudent();
 
         Report report=new Report();
