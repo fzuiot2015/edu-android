@@ -1,10 +1,10 @@
 package fzu.edu.student.adapter;
 
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -62,14 +62,15 @@ public class SyllabusAdapter extends BaseAdapter {
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_syllabus, null);
         }
-        TextView textView = convertView.findViewById(R.id.item_syllabus_text);
-
+        TextView textView = convertView.findViewById(R.id.item_syllabus_name);
+        TextView textView1 = convertView.findViewById(R.id.item_syllabus_addr);
+        RelativeLayout relativeLayout = convertView.findViewById(R.id.item_syllabus);
         //如果有课,那么添加数据
-        Course course=getItem(position);
-        if ( course!= null) {
+        Course course = getItem(position);
+        if (course != null) {
             textView.setText(course.getCname());
-//            textView.setTextColor(Color.WHITE);
-            textView.setBackgroundResource(R.color.courseItem);
+            textView1.setText(course.getAddress());
+            relativeLayout.setBackgroundResource(R.color.courseItem);
 
             convertView.setOnClickListener(new View.OnClickListener() {
                 @Override

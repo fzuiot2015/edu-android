@@ -7,7 +7,7 @@
     <!--显示星期-->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="26dp"
+        android:layout_height="32dp"
         android:paddingLeft="30dp"
         android:background="@android:color/white"
         android:gravity="center">
@@ -75,6 +75,7 @@
             <!--显示第几节课-->
             <LinearLayout
                 android:layout_width="26dp"
+                android:background="@android:color/white"
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:orientation="vertical">
