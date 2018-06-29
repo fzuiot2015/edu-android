@@ -44,8 +44,8 @@ public class StudentRegisterActivity extends AppCompatActivity {
     private Spinner spinner1;
     private ArrayAdapter<String> adapter;
     private ArrayAdapter<String> adapter1;
-    private static int mApuIndex = -1;
-    private static int mApuIndex1 = -1;
+    private static int mApuIndex = 0;
+    private static int mApuIndex1 = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,12 +65,11 @@ public class StudentRegisterActivity extends AppCompatActivity {
         //将adapter 添加到spinner中
         spinner1.setAdapter(adapter1);
         spinner.setAdapter(adapter);
-        spinner.setSelection(2, true);
-        spinner1.setSelection(2, true);
+        spinner.setSelection(0, true);
+        spinner1.setSelection(0, true);
         abstract class SpinnerSelectedListener implements AdapterView.OnItemSelectedListener {
 
             public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-                mApuIndex = arg2;
             }
 
             public void onNothingSelected(AdapterView<?> arg0) {
@@ -78,17 +77,23 @@ public class StudentRegisterActivity extends AppCompatActivity {
             }
         }
         spinner.setOnItemSelectedListener(new SpinnerSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+                super.onItemSelected(arg0, arg1, arg2, arg3);
+                mApuIndex = arg2;
+            }
         });
         spinner1.setOnItemSelectedListener(new SpinnerSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
                 super.onItemSelected(arg0, arg1, arg2, arg3);
+                mApuIndex1 = arg2;
             }
         });
 
 
         //设置默认值
-        spinner.setVisibility(View.VISIBLE);
+
         mAccount = findViewById(R.id.register_input_account_student);
         mName = findViewById(R.id.register_input_name_student);
         mPassword = findViewById(R.id.register_input_password_student);
@@ -101,8 +106,8 @@ public class StudentRegisterActivity extends AppCompatActivity {
                 String password = mPassword.getText().toString();
                 String passwordCheck = mPasswordCheck.getText().toString();
                 String name = mName.getText().toString();
-                String sdept = "abc";
-                String smajor = "abc";
+                String sdept = m[mApuIndex];
+                String smajor = m1[mApuIndex1];
 
 
                 boolean isValid = true;

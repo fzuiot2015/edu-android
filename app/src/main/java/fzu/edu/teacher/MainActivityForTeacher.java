@@ -23,6 +23,7 @@ import fzu.edu.R;
 import fzu.edu.activity.LoginActivity;
 import fzu.edu.entiy.Teacher;
 import fzu.edu.teacher.fragment.CourseFragmentForTeacher;
+import fzu.edu.teacher.fragment.InfoTeacherFragment;
 import fzu.edu.teacher.fragment.StuListFragment;
 
 /**
@@ -32,6 +33,7 @@ public class MainActivityForTeacher extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private CourseFragmentForTeacher courseFragment;
+private InfoTeacherFragment infoTeacherFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -129,7 +131,14 @@ public class MainActivityForTeacher extends AppCompatActivity
                     transaction.replace(R.id.main_fragment_for_teacher, courseFragment).commit();
                 }
                 break;
-
+            case R.id.nav_info:
+                if (infoTeacherFragment == null) {
+                    infoTeacherFragment = new InfoTeacherFragment();
+                    transaction.replace(R.id.main_fragment_for_teacher, infoTeacherFragment).commit();
+                } else {
+                    transaction.replace(R.id.main_fragment_for_teacher, infoTeacherFragment).commit();
+                }
+                break;
             case R.id.nav_logout:
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {

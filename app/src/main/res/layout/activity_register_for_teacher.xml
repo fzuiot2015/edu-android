@@ -96,7 +96,27 @@
             android:singleLine="true" />
 
     </android.support.design.widget.TextInputLayout>
+    <Spinner
+        android:id="@+id/register_input_academy_teacher"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_width="match_parent"
+        android:popupBackground="@drawable/textview_border"
+        android:layout_height="48dp">
 
+    </Spinner>
+
+    <Spinner
+        android:id="@+id/register_input_major_teacher"
+        android:popupBackground="@drawable/textview_border"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="48dp">
+
+    </Spinner>
     <Button
         android:id="@+id/register_button_teacher"
         android:layout_width="match_parent"
