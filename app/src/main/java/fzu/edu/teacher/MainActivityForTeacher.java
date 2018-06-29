@@ -22,6 +22,7 @@ import fzu.edu.MyApplication;
 import fzu.edu.R;
 import fzu.edu.activity.LoginActivity;
 import fzu.edu.entiy.Teacher;
+import fzu.edu.teacher.fragment.CourseFragmentForTeacher;
 import fzu.edu.teacher.fragment.StuListFragment;
 
 /**
@@ -30,7 +31,7 @@ import fzu.edu.teacher.fragment.StuListFragment;
 public class MainActivityForTeacher extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private StuListFragment stuListFragment;
+    private CourseFragmentForTeacher courseFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +48,7 @@ public class MainActivityForTeacher extends AppCompatActivity
         toggle.syncState();
 
         NavigationView navigationView = findViewById(R.id.nav_view_for_teacher);
-        navigationView.setCheckedItem(R.id.nav_stu);               //侧边栏默认选项
+        navigationView.setCheckedItem(R.id.nav_course);               //侧边栏默认选项
         navigationView.setNavigationItemSelectedListener(this);
 
         Teacher teacher = MyApplication.getTeacher();
@@ -59,8 +60,8 @@ public class MainActivityForTeacher extends AppCompatActivity
         userIdView.setText(teacher.getTusername());
 
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        stuListFragment = new StuListFragment();
-        transaction.add(R.id.main_fragment_for_teacher, stuListFragment).commit();
+        courseFragment = new CourseFragmentForTeacher();
+        transaction.add(R.id.main_fragment_for_teacher, courseFragment).commit();
     }
 
     @Override
@@ -120,12 +121,12 @@ public class MainActivityForTeacher extends AppCompatActivity
 
         //TODO：侧边栏点击事件
         switch (item.getItemId()) {
-            case R.id.nav_stu:
-                if (stuListFragment == null) {
-                    stuListFragment = new StuListFragment();
-                    transaction.replace(R.id.main_fragment_for_teacher, stuListFragment).commit();
+            case R.id.nav_course:
+                if (courseFragment == null) {
+                    courseFragment = new CourseFragmentForTeacher();
+                    transaction.replace(R.id.main_fragment_for_teacher, courseFragment).commit();
                 } else {
-                    transaction.replace(R.id.main_fragment_for_teacher, stuListFragment).commit();
+                    transaction.replace(R.id.main_fragment_for_teacher, courseFragment).commit();
                 }
                 break;
 
