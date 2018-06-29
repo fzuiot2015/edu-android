@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">edu</string>
+    <string name="app_name">超级教务通</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_name">姓名</string>
